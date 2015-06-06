@@ -1,0 +1,113 @@
+html,body{
+	margin: -15px;
+	padding: 0;
+
+}
+body{
+	width: 960px;
+	margin: 0px auto;
+	padding: 0px;
+	font-family: sans-serif,monospace,"Century Gothic",Calibri;
+	text-align: justify;
+}
+.Menu{
+	background-color: #53556A;
+	font-family: Calibri,sans-serif;
+	font-size: 14px;
+	font-variant: small-caps;
+}
+.Menu ul{
+	list-style-type: none;	
+}
+
+.Menu li{
+	display: block;
+	float:left;
+}
+.Menu a{
+	display: block;
+	background-color: #53556A;
+	color: white;
+	text-decoration: none;
+	width: 100px;
+	height: 20px;
+	padding: 10px 60px;
+	text-align: center;
+	font-weight: bold;
+
+}
+.Menu a:hover{
+	color: #53556A;
+	background-color: white;
+}
+.Menu:after{
+	content: ".";
+	display: block;
+	height: 0px;
+	clear: both;
+	visibility: hidden;
+}
+.Content{
+	width: 960px;
+	padding: 0px;
+	margin: 0px;
+}
+.SideContent{
+	width: 365px;
+	height: 685px;
+	float: left;
+	padding: 0px 5px;
+}
+#LogoImage1{
+	margin: 0px 5px;
+}
+.MainContent{
+	width: 575px;
+	float: left;
+	padding: 0px 5px;
+	background-color: #53556A;
+
+}
+#titleSection{
+	width: 365px;
+	color:#FFF;
+	background-color: #53556A;
+	font-family: Calibri,sans-serif;
+	font-size: 14px;
+	font-variant: small-caps;	
+	text-align: center;
+}
+p{
+	font-family: Verdana;
+	font-size: 12px;
+}
+h6{
+	font-family: Calibri,sans-serif;
+	font-weight: bold;
+	padding: 0px;	
+}
+h2{
+	color: #FFF;
+	font-family: Calibri,sans-serif;
+	font-variant: small-caps;
+
+}
+.MainArticle{
+	border-bottom: dashed #FFF 2px;
+}
+.Content:after{
+	content: ".";
+	display: block;
+	height: 0px;
+	clear: both;
+	visibility: hidden;
+}
+.footer{
+	background-color: #53556A;
+	font-family: Calibri,sans-serif;
+	font-size: 14px;
+	font-variant: small-caps;	
+	text-align: center;
+	margin: -15px 0px;
+	padding: 0px;
+}
