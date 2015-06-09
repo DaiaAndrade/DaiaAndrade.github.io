@@ -23,10 +23,10 @@ var main = function(userChoice) {
 	var result = compare(userChoice,computerChoice);
 	document.getElementById("result").innerHTML = result;
 
-	// var simModel = new pipit.CapiAdapter.CapiModel({
-	// 	savedResult: result});
-	// pipit.CapiAdapter.expose("test", simModel);
-	// pipit.Controller.notifyOnReady();
+	var simModel = new pipit.CapiAdapter.CapiModel({
+		savedResult: result});
+	pipit.CapiAdapter.expose("test", simModel);
+	pipit.Controller.notifyOnReady();
 
 }
 
