@@ -19,7 +19,6 @@ var main = function(userChoice) {
 	else {
 		userChoice = "scisors";
 	}
-	document.getElementById("yourChoice").innerHTML = "Your Choice: " + userChoice;
 	document.getElementById("computer").innerHTML = "Computer Choice: " + computerChoice;
 	var result = compare(userChoice,computerChoice);
 	document.getElementById("result").innerHTML = result;
