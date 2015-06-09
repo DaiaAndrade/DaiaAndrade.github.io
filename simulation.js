@@ -2,10 +2,6 @@ var simModel = new pipit.CapiAdapter.CapiModel({
 	computerChoice: "paper"
 });
 
-pipit.CapiAdapter.expose(computerChoice, simModel);
-
-pipit.Controller.notifyOnReady();
-
 var main = function(userChoice) {
 	
 	var computerChoice = Math.random();
@@ -30,7 +26,7 @@ var main = function(userChoice) {
 	document.getElementById("computer").innerHTML = "Computer Choice: " + computerChoice;
 	var result = compare(userChoice,computerChoice);
 	document.getElementById("result").innerHTML = result;
-	tieCheck(result);
+	//tieCheck(result);
 
 }
 
@@ -65,7 +61,7 @@ var compare = function(choice1,choice2){
 	}
 }
 
-var tieCheck = function(result){
+/*var tieCheck = function(result){
 	var simModel = new pipit.CapiAdapter.CapiModel({
 		actualResult: result
 	});
@@ -78,4 +74,9 @@ var tieCheck = function(result){
 		$('#results').append("Meh");
 	}
 	pipit.Controller.notifyOnReady();
-}
+}*/
+
+pipit.CapiAdapter.expose(computerChoice, simModel);
+
+pipit.Controller.notifyOnReady();
+
