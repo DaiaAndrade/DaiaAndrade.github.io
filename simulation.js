@@ -24,24 +24,14 @@ var main = function(userChoice) {
 	document.getElementById("result").innerHTML = result;
 
 	var simModel = new pipit.CapiAdapter.CapiModel({
-		numberOfColors: 0
+		color: 'red'
 	});
-	pipit.CapiAdapter.expose("numberOfColors", simModel);
-	simModel.on('change:numberOfColors', function(m, attributes){
-		for(var i = 0; i< attributes.numberOfColors; ++i){
-		createProperty('color'+i+'Name', '');
-		createProperty('color'+i+'Red', 0);
-		createProperty('color'+i+'Green', 0);
-		createProperty('color'+i+'Blue', 0);
-			}
-		});
-	function createProperty(name, defaultValue){
-		simModel.set(name, defaultValue);
-		pipit.CapiAdapter.expose(name, simModel);
-	}
+	
+	pipit.CapiAdapter.expose("color", simModel, {allowedValues: ['red', 'blue', 'green']});
 
 	pipit.Controller.notifyOnReady();
-	}
+}
+
 
 var compare = function(choice1,choice2){
 	if (choice1 == choice2){
