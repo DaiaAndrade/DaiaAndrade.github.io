@@ -22,6 +22,12 @@ var main = function(userChoice) {
 	document.getElementById("computer").innerHTML = "Computer Choice: " + computerChoice;
 	var result = compare(userChoice,computerChoice);
 	document.getElementById("result").innerHTML = result;
+
+	var simModel = new pipit.CapiAdapter.CapiModel({
+		savedResult: result});
+	pipit.CapiAdapter.expose("test", simModel);
+	pipit.Controller.notifyOnReady();
+
 }
 
 var compare = function(choice1,choice2){
