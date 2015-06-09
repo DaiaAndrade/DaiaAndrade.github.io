@@ -2,7 +2,7 @@ var simModel = new pipit.CapiAdapter.CapiModel({
 	computerChoice: "paper"
 });
 
-var main = function(userChoice) {
+/*var main = function(userChoice) {
 	
 	var computerChoice = Math.random();
 	if (computerChoice < 0.34) {
@@ -60,7 +60,7 @@ var compare = function(choice1,choice2){
 		}
 	}
 }
-
+*/
 /*var tieCheck = function(result){
 	var simModel = new pipit.CapiAdapter.CapiModel({
 		actualResult: result
