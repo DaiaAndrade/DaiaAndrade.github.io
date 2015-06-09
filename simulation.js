@@ -3,7 +3,6 @@ var simModel = new pipit.CapiAdapter.CapiModel({
 });
 
 
-pipit.CapiAdapter.expose(computerChoice, simModel);
 
 if(computerChoice == "It is a tie"){
 	$('#results').append("Done");
@@ -13,6 +12,7 @@ else{
 }
 
 
+pipit.CapiAdapter.expose(computerChoice, simModel);
 pipit.Controller.notifyOnReady();
 
 /*var main = function(userChoice) {
