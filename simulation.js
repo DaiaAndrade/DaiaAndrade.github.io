@@ -24,10 +24,14 @@ var main = function(userChoice) {
 	document.getElementById("result").innerHTML = result;
 
 	var simModel = new pipit.CapiAdapter.CapiModel({
-		savedResult: result});
+		tieResult: "0"});
 	pipit.CapiAdapter.expose("test", simModel);
-	pipit.Controller.notifyOnReady();
+	
 
+	if (result == "It is a tie!") {
+		simModel.set('tieResult',tieResult+1);
+	};
+	pipit.Controller.notifyOnReady();
 }
 
 var compare = function(choice1,choice2){
