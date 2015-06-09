@@ -63,10 +63,10 @@ var tieCheck = function(result){
 
 	pipit.CapiAdapter.expose("actualResult", simModel, {allowedValues: ['It is a tie!', 'Rock wins', 'Paper wins', 'Scisors wins']});
 	if(actualResult == "It is a tie!") {
-		return true;
+		$('#results').append("Done");
 	}
 	else{
-		return false;
+		$('#results').append("Meh");
 	}
 	pipit.Controller.notifyOnReady();
 }
