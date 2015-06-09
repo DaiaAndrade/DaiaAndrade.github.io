@@ -1,76 +1,84 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 	<head>
-		<meta charset="utf-8">
-    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-    	<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" href="css/style.css"/>
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-		<title>Generic Title</title>
+		<meta charset="UTF-8">
+
+		<link rel="stylesheet" href="app/styles/jquery-ui-1.11.1/jquery-ui.theme.min.css">
+		<script src="libs/jquery-1.11.1.min.js"></script>
+		<script src="libs/jquery-ui-1.11.1/jquery-ui.min.js"></script>
+
+		<link rel="stylesheet" href="app/styles/style.css">
+
+		<!-- jQuery stuff -->
+<!--
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" />
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+-->		
+		<!-- Simulation interface to Smart Sparrow AELP -->
+		<script src= "https://d1rpkia8qpfj4t.cloudfront.net/js/pipit-0.63.min.js"></script>
 	</head>
-	<body> 
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container">
-				<a class="navbar-brand" href="#">Mente Complicada</a>
-				<ul class="nav navbar-nav">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="index.html">Arquivo</a></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Contato <span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Facebook</a></li>
-							<li><a href="#">Twitter</a></li>
-							<li><a href="#">Email</a></li>
-						</ul>
-					</li>
-					<li><a href="index.html">Sobre</a></li>
-				</ul>
-			</div>
-		</nav>
-		<div class="starter-template">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4">
-						<a href="index.html"><img id="LogoImage1"  src="images/logo.png" /></a>
-						<p id="titleSection">Title<p>
-						<p id="sectionText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam purus magna, ultricies et est id, fermentum aliquam nisi. Aenean fringilla a magna non blandit. Aenean ut ante eu enim imperdiet interdum. Etiam placerat, tortor non blandit mattis, augue risus hendrerit enim, eget egestas dolor est ac velit. Vivamus eget fermentum mauris. Cras at erat dignissim, dignissim nisl non, condimentum nisi. Phasellus in nisl magna.</p>
-						<p id="titleSection">Title<p>
-						<p id="sectionText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam purus magna, ultricies et est id, fermentum aliquam nisi. Aenean fringilla a magna non blandit. Aenean ut ante eu enim imperdiet interdum. Etiam placerat, tortor non blandit mattis, augue risus hendrerit enim, eget egestas dolor est ac velit. Vivamus eget fermentum mauris. Cras at erat dignissim, dignissim nisl non, condimentum nisi. Phasellus in nisl magna.</p>
-						<p id="titleSection">Title<p>
-						<p id="sectionText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam purus magna, ultricies et est id, fermentum aliquam nisi. Aenean fringilla a magna non blandit. Aenean ut ante eu enim imperdiet interdum. Etiam placerat, tortor non blandit mattis, augue risus hendrerit enim, eget egestas dolor est ac velit. Vivamus eget fermentum mauris. Cras at erat dignissim, dignissim nisl non, condimentum nisi. Phasellus in nisl magna.</p>
-					</div>
-					<div class="col-md-8">
-						<div class="MainArticle">
-							<h6 class="date">12/03/2013</h6>	<!-- Colocar tag de data da postagem -->
-							<h2 id="ArticleTitle">Oi</h2>	<!-- Colocar tag de nome da postagem -->
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam purus magna, ultricies et est id, fermentum aliquam nisi. Aenean fringilla a magna non blandit. Aenean ut ante eu enim imperdiet interdum. Etiam placerat, tortor non blandit mattis, augue risus hendrerit enim, eget egestas dolor est ac velit. Vivamus eget fermentum mauris. Cras at erat dignissim, dignissim nisl non, condimentum nisi. Phasellus in nisl magna.</p>
-							<p>Suspendisse porttitor fermentum odio ut fringilla. Duis suscipit metus sit amet lorem gravida venenatis. Fusce sollicitudin magna fringilla viverra aliquam. Nulla blandit turpis sit amet semper consectetur. Donec in metus tincidunt, faucibus est eget, luctus erat. Cras malesuada, velit et lobortis accumsan, nisi lectus aliquet sapien, quis mollis velit ante quis nunc. Duis volutpat quis risus viverra tincidunt. Suspendisse et sem nunc. Nunc ac dignissim nulla. Etiam quis tellus nisl. Curabitur rhoncus pretium ligula, ut dapibus mauris luctus ut.</p>
-							<p>Aliquam ornare fermentum felis, sed cursus mi commodo non. Ut rhoncus tempus tempus. Suspendisse porta, lectus faucibus facilisis pharetra, sem ante gravida orci, dictum condimentum eros tellus ac leo. Fusce ornare consequat nisl non venenatis. Pellentesque malesuada nisi id rutrum feugiat. Aenean sit amet vulputate ipsum. Pellentesque ut tellus neque. Ut nec fermentum ex, eu commodo urna. Quisque dapibus convallis nisi, gravida pellentesque dui sollicitudin quis. Fusce ligula odio, facilisis non ornare non, mattis et metus. Vivamus suscipit mi et aliquet condimentum. Suspendisse potenti. Integer dolor lorem, aliquam ut venenatis viverra, gravida sed erat.</p>
-							<p>Curabitur faucibus sit amet diam in efficitur. Duis sollicitudin gravida justo ut egestas. In lacus sem, pharetra sit amet magna non, elementum tristique turpis. Cras at tellus vel nibh faucibus auctor a et libero. Nullam ullamcorper venenatis nunc, at lobortis lorem lacinia eu. Nullam feugiat hendrerit tellus et laoreet. Etiam orci urna, dapibus eu mi nec, scelerisque mattis libero. Integer volutpat hendrerit elit, in aliquam tortor. Sed gravida massa a lectus malesuada, eget pretium orci sagittis. Aenean laoreet in elit in euismod. Curabitur ut tincidunt tortor. Fusce quam urna, faucibus eget ante gravida, feugiat gravida lectus. Ut arcu odio, aliquam eget consequat eu, eleifend a odio. Etiam libero diam, sodales ut euismod eu, suscipit vitae nunc. Sed vel congue felis.</p>
-							<p>In viverra lectus odio, sed congue lorem sollicitudin in. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Maecenas ac sodales lacus. Quisque tristique quam sed ultrices bibendum. Suspendisse molestie metus eu congue fermentum. Cras congue leo pretium, feugiat neque vel, elementum lorem. Sed et auctor est, eget malesuada dolor. Sed gravida quam eget nulla luctus, sed condimentum nulla tempus.</p>
-						</div>
-						<div class="SecondArticle">
-							<h6 class="date">12/03/2013</h6>	<!-- Colocar tag de data da postagem -->
-							<h2 id="ArticleTitle">Oi</h2>	<!-- Colocar tag de nome da postagem -->
-							<p>Duis interdum augue at pretium scelerisque. Phasellus vitae elementum urna, ut sagittis ipsum. Quisque porta sodales urna, eu dapibus ex. Morbi ipsum tellus, tincidunt quis pellentesque a, tristique cursus mi. Vivamus quis cursus urna. Donec suscipit eu elit a ullamcorper. Quisque lacinia, diam eu fringilla laoreet, ante lacus sodales tellus, vel pharetra tortor enim eget tortor. Donec a urna sed ex rhoncus iaculis pulvinar posuere nisl. Vivamus vitae urna a leo blandit aliquet eu eget dolor. Praesent ac turpis quam. Maecenas velit velit, tincidunt et iaculis et, pulvinar in sapien. Cras eget ante vitae magna tincidunt malesuada a sit amet dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas pretium, eros in posuere blandit, magna ipsum commodo ligula, congue pellentesque erat nibh ut lectus. Cras urna urna, elementum id mollis eu, mollis nec metus.</p>
-							<p>Nulla eget tempor nunc. Nulla facilisi. Nunc viverra justo accumsan arcu semper, a facilisis nisl placerat. Aenean quis consectetur eros. Praesent vulputate sed lorem eu tempus. Ut eu lacus non urna pellentesque consectetur sollicitudin sit amet nisi. Donec at orci id tellus pellentesque rutrum sed a massa. Praesent vitae tincidunt sapien. Phasellus feugiat nulla ex, at egestas orci luctus ut. Maecenas at condimentum arcu, in viverra enim.</p>
-							<p>Integer consectetur egestas eleifend. Nullam egestas sit amet tortor a porta. Mauris nibh leo, pretium ac luctus rhoncus, finibus eget urna. In pretium placerat blandit. Donec lobortis velit at sollicitudin vestibulum. Vestibulum porttitor sit amet ante vitae vulputate. Etiam eu libero varius, cursus turpis et, efficitur ante.</p>
-							<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec mollis ante mollis, commodo diam nec, luctus est. Fusce efficitur fermentum ante, eu elementum magna. Aliquam erat volutpat. Donec placerat neque accumsan varius fermentum. Suspendisse potenti. Quisque consequat urna sed diam euismod, nec iaculis urna imperdiet. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Vivamus metus ipsum, porta a quam vitae, pretium mattis elit.</p>
-							<p>Integer cursus magna a felis gravida dapibus. Duis faucibus nisl nec massa elementum dignissim. Aliquam at interdum mi, in fringilla eros. Aliquam magna felis, viverra a malesuada ac, pulvinar in nisl. Vivamus vitae rutrum tortor, vitae bibendum eros. Maecenas et neque non enim vulputate vehicula. Etiam in dolor varius, sollicitudin ligula sit amet, finibus lectus.</p>
-						</div>
-					</div>
+	<body>
+		<div class="controlsView">
+			<form action="#">
+				<div id="SearchAlgorithm">
+					<input type="radio" id="chooseBtn" name="algorithmRB" checked="true"><label for="chooseBtn">Choose a search algorithm:</label>
+					<input type="radio" id="dfsBtn" name="algorithmRB"><label for="dfsBtn">DFS</label>
+					<input type="radio" id="bfsBtn" name="algorithmRB"><label for="bfsBtn">BFS</label>
+					<input type="radio" id="ucsBtn" name="algorithmRB"><label for="ucsBtn">UCS</label>
+					<input type="radio" id="greedyBtn" name="algorithmRB"><label for="greedyBtn">Greedy</label>
+					<input type="radio" id="astarBtn" name="algorithmRB"><label for="astarBtn">A-Star Tree</label>
+					<input type="radio" id="astarGraphBtn" name="algorithmRB"><label for="astarGraphBtn">A-Star Graph</label>
+<!--
+					<input type="radio" id="dfsidBtn" name="algorithmRB"><label for="dfsidBtn">DFS-ID</label>
+-->
 				</div>
-			</div>
+
+				<fieldset>
+					<label for="depthLimitSpnr">Depth Limit:</label>
+					<input id="depthLimitSpnr" width="50px" name="value">
+					<button type="button" id="nextBtn">Next Step</button>
+					<button type="button" id="resetBtn">Reset</button>
+				</fieldset>
+				
+				<p>
+					<h1 id="SearchAlgorithmLabel">Choose a search algorithm by pressing on one of the buttons above.</h1>
+				</p>
+			</form>
 		</div>
-		<div class="footer">
-			<div class="container">
-				<p>Daiane Andrade &copy 2012 – All Rights Reserved</p>
-			</div>
+		
+		<div class="graphView">
+			<p>
+				<h1>State Space Graph</h1>
+			</p>
+			<canvas id="graphCanvas" width="400" height="400"></canvas>
 		</div>
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-		<!-- Include all compiled plugins (below), or include individual files as needed -->
-		<script src="js/bootstrap.min.js"></script>
+		
+		<div class="treeView">
+			<p>
+				<h1>Search Tree</h1>
+			</p>
+			<canvas id="treeCanvas" width="900" height="400"></canvas>
+		</div>
+		<div class="fringeView">
+<!--
+			<h1>Depth Limit</h1>
+			<p id="depthLimitDisplay">
+			</p>
+-->
+			<h1>Fringe</h1>
+			<p id="fringeDisplay">
+			</p>
+			<h1>Expanded Nodes</h1>
+			<p id="expandedNodesDisplay">
+			</p>			
+		</div>
+		
+		<script type="text/javascript" src="app/scripts/models.js"></script>
+		<script type="text/javascript" src="app/scripts/view.js"></script>
+		<script type="text/javascript" src="app/scripts/main.js"></script>
+		<script type="text/javascript" src="app/scripts/genericSearch.js"></script>
 	</body>
 </html>
+
+
