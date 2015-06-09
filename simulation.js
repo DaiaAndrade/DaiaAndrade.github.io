@@ -2,6 +2,19 @@ var simModel = new pipit.CapiAdapter.CapiModel({
 	computerChoice: "paper"
 });
 
+
+pipit.CapiAdapter.expose(computerChoice, simModel);
+
+if(computerChoice == "It is a tie"){
+	$('#results').append("Done");
+}
+else{
+	$('#results').append(computerChoice);	
+}
+
+
+pipit.Controller.notifyOnReady();
+
 /*var main = function(userChoice) {
 	
 	var computerChoice = Math.random();
@@ -75,8 +88,3 @@ var compare = function(choice1,choice2){
 	}
 	pipit.Controller.notifyOnReady();
 }*/
-
-pipit.CapiAdapter.expose(computerChoice, simModel);
-
-pipit.Controller.notifyOnReady();
-
