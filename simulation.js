@@ -6,6 +6,7 @@ pipit.CapiAdapter.expose('actualResult', simModel);
 
 var main = function(userChoice) {
 	
+	pipit.Controller.notifyOnReady();
 	var computerChoice = Math.random();
 	if (computerChoice < 0.34) {
 		computerChoice = "rock";
@@ -28,7 +29,6 @@ var main = function(userChoice) {
 	document.getElementById("computer").innerHTML = "Computer Choice: " + computerChoice;
 	var result = compare(userChoice,computerChoice);
 	document.getElementById("result").innerHTML = result;
-
 	//tieCheck(result);
 
 }
@@ -75,7 +75,7 @@ var compare = function(choice1,choice2){
 		$('#results').append("Meh");
 	}
 	pipit.Controller.notifyOnReady();
-}*/
 $(document).ready(function(){
 	pipit.Controller.notifyOnReady();
 });
+}*/
