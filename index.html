@@ -5,8 +5,8 @@
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="newIndex/text/css" href="newIndex/css/style.css"/>
-		<link rel="stylesheet" type="newIndex/text/css" href="newIndex/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="newIndex/css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="newIndex/css/bootstrap.css">
 		<title>Generic Title</title>
 	</head>
 	<body> 
@@ -31,16 +31,16 @@
 		<div class="starter-template">
 			<div class="container">
 				<div class="row">
-					<div class="col-md-4">
-						<script src="simulation.js"></script>
-					</div>
-					<div class="col-md-8">
-						<div class="MainArticle">
-							
-						</div>
-						<div class="SecondArticle">
-							
-						</div>
+					<div class="col-md-12">
+						<h3>Rock, Paper, Scisors!</h3>
+						<ul class="list-group">
+							<li class="list-group-item"><button type="button" class="btn btn-default" onclick="main(1)">Rock</button></li>
+							<li class="list-group-item"><button type="button" class="btn btn-primary" onclick="main(2)">Paper</button></li>
+							<li class="list-group-item"><button type="button" class="btn btn-info" onclick="main(3)">Scisors</button></li>
+						</ul>
+						<p id="yourChoice"></p>
+						<p id="computer"></p>
+						<p id="result"></p>
 					</div>
 				</div>
 			</div>
@@ -54,5 +54,6 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="newIndex/js/bootstrap.min.js"></script>
+		<script src="simulation.js"></script>
 	</body>
 </html>
