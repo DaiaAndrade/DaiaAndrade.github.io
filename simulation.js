@@ -22,14 +22,7 @@ var main = function(userChoice) {
 	document.getElementById("computer").innerHTML = "Computer Choice: " + computerChoice;
 	var result = compare(userChoice,computerChoice);
 	document.getElementById("result").innerHTML = result;
-
-	var simModel = new pipit.CapiAdapter.CapiModel({
-		color: 'red'
-	});
-	
-	pipit.CapiAdapter.expose("color", simModel, {allowedValues: ['red', 'blue', 'green']});
-
-	pipit.Controller.notifyOnReady();
+	tieCheck(result);
 }
 
 
@@ -61,4 +54,19 @@ var compare = function(choice1,choice2){
 			return "Scisors wins";
 		}
 	}
+}
+
+var tieCheck = function(result){
+	var simModel = new pipit.CapiAdapter.CapiModel({
+		actualResult: result
+	});
+
+	pipit.CapiAdapter.expose("actualResult", simModel, {allowedValues: ['It is a tie!', 'Rock wins', 'Paper wins', 'Scisors wins']});
+	if(actualResult == "It is a tie!") {
+		return true;
+	}
+	else{
+		return false;
+	}
+	pipit.Controller.notifyOnReady();
 }
