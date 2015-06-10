@@ -7,7 +7,7 @@ var simModel = new pipit.CapiAdapter.CapiModel({
 pipit.CapiAdapter.expose('demoMode', simModel);
 pipit.Controller.notifyOnReady();
 
-/*var main = function(userChoice) {
+var main = function(userChoice) {
 	
 	pipit.Controller.notifyOnReady();
 	var computerChoice = Math.random();
@@ -32,7 +32,6 @@ pipit.Controller.notifyOnReady();
 	document.getElementById("computer").innerHTML = "Computer Choice: " + computerChoice;
 	var result = compare(userChoice,computerChoice);
 	document.getElementById("result").innerHTML = result;
-	//tieCheck(result);
 
 }
 
@@ -66,19 +65,3 @@ var compare = function(choice1,choice2){
 		}
 	}
 }
-
-
-
-var tieCheck = function(result){
-	pipit.CapiAdapter.expose("actualResult", simModel, {allowedValues: ['It is a tie!', 'Rock wins', 'Paper wins', 'Scisors wins']});
-	if(actualResult == "It is a tie!") {
-		$('#results').append("Done");
-	}
-	else{
-		$('#results').append("Meh");
-	}
-	pipit.Controller.notifyOnReady();
-$(document).ready(function(){
-	pipit.Controller.notifyOnReady();
-});
-}*/
