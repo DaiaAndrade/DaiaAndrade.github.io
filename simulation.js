@@ -1,10 +1,13 @@
 var simModel = new pipit.CapiAdapter.CapiModel({
-	actualResult: result
+    demoMode: true,
+    studentResponse: "5"
 });
 
-pipit.CapiAdapter.expose('actualResult', simModel);
 
-var main = function(userChoice) {
+pipit.CapiAdapter.expose('demoMode', simModel);
+pipit.Controller.notifyOnReady();
+
+/*var main = function(userChoice) {
 	
 	pipit.Controller.notifyOnReady();
 	var computerChoice = Math.random();
@@ -65,8 +68,8 @@ var compare = function(choice1,choice2){
 }
 
 
-/*var tieCheck = function(result){
 
+var tieCheck = function(result){
 	pipit.CapiAdapter.expose("actualResult", simModel, {allowedValues: ['It is a tie!', 'Rock wins', 'Paper wins', 'Scisors wins']});
 	if(actualResult == "It is a tie!") {
 		$('#results').append("Done");
