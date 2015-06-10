@@ -9,7 +9,6 @@ pipit.Controller.notifyOnReady();
 
 var main = function(userChoice) {
 	
-	pipit.Controller.notifyOnReady();
 	var computerChoice = Math.random();
 	if (computerChoice < 0.34) {
 		computerChoice = "rock";
