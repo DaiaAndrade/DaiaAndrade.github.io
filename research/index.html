@@ -1,85 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<meta charset="UTF-8">
-
-		<link rel="stylesheet" href="app/styles/jquery-ui-1.11.1/jquery-ui.theme.min.css">
-		<script src="libs/jquery-1.11.1.min.js"></script>
-		<script src="libs/jquery-ui-1.11.1/jquery-ui.min.js"></script>
-
-		<link rel="stylesheet" href="app/styles/style.css">
-
-		<!-- jQuery stuff -->
-<!--
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" />
-		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
--->		
-		<!-- Simulation interface to Smart Sparrow AELP -->
-		<script src= "https://d1rpkia8qpfj4t.cloudfront.net/js/pipit-0.63.min.js"></script>
+		<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" type="text/css" href="newIndex/css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="newIndex/css/bootstrap.css">
+		<title>Generic Title</title>
 	</head>
-	<body>
-		<div class="controlsView">
-			<form action="#">
-				<div id="SearchAlgorithm">
-					<input type="radio" id="chooseBtn" name="algorithmRB" checked="true"><label for="chooseBtn">Choose a search algorithm:</label>
-					<input type="radio" id="dfsBtn" name="algorithmRB"><label for="dfsBtn">DFS</label>
-					<input type="radio" id="bfsBtn" name="algorithmRB"><label for="bfsBtn">BFS</label>
-					<input type="radio" id="ucsBtn" name="algorithmRB"><label for="ucsBtn">UCS</label>
-					<input type="radio" id="greedyBtn" name="algorithmRB"><label for="greedyBtn">Greedy</label>
-					<input type="radio" id="astarBtn" name="algorithmRB"><label for="astarBtn">A-Star Tree</label>
-					<input type="radio" id="astarGraphBtn" name="algorithmRB"><label for="astarGraphBtn">A-Star Graph</label>
-<!--
-					<input type="radio" id="dfsidBtn" name="algorithmRB"><label for="dfsidBtn">DFS-ID</label>
--->
+	<body> 
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<a class="navbar-brand" href="#">Daiane Andrade</a>
+				<ul class="nav navbar-nav">
+					<li><a href="newIndex/index.html">Home</a></li>
+					<li><a href="research/index.html">Research</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Contact <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Facebook</a></li>
+							<li><a href="#">Twitter</a></li>
+							<li><a href="mailto:daiafocking@gmail.com">Email</a></li>
+						</ul>
+					</li>
+					<li><a href="index.html">Sobre</a></li>
+				</ul>
+			</div>
+		</nav>
+		<div class="starter-template">
+			<div class="container">
+				<div class="row">
+					<h3>Rock, Paper, Scisors!</h3>
+					<div class="col-md-4">
+					<h4>The Game</h4>
+					
+						<ul class="list-group">
+							<li class="list-group-item"><button type="button" class="btn btn-default" onclick="main(1)">Rock</button></li>
+							<li class="list-group-item"><button type="button" class="btn btn-primary" onclick="main(2)">Paper</button></li>
+							<li class="list-group-item"><button type="button" class="btn btn-info" onclick="main(3)">Scisors</button></li>
+							<li class="list-group-item list-group-item-danger" id="computer">Waiting for computer choice.</li>
+							<li class="list-group-item list-group-item-success" id="result">Waiting for result.</li>
+						</ul>
+					</div>
+					<div class="col-md-8">
+						<h4>The Results</h4>
+						<ul class="list=group">
+							<li id="results"></li>
+						</ul>
+					</div>
 				</div>
-
-				<fieldset>
-					<label for="depthLimitSpnr">Depth Limit:</label>
-					<input id="depthLimitSpnr" width="50px" name="value">
-					<button type="button" id="nextBtn">Next Step</button>
-					<button type="button" id="resetBtn">Reset</button>
-				</fieldset>
-				
-				<p>
-					<h1 id="SearchAlgorithmLabel">Choose a search algorithm by pressing on one of the buttons above.</h1>
-				</p>
-			</form>
+			</div>
 		</div>
-		
-		<div class="graphView">
-			<p>
-				<h1>State Space Graph</h1>
-			</p>
-			<canvas id="graphCanvas" width="400" height="400"></canvas>
+		<div class="footer">
+			<div class="container">
+				<p>Daiane Andrade &copy 2012 – All Rights Reserved</p>
+			</div>
 		</div>
-		
-		<div class="treeView">
-			<p>
-				<h1>Search Tree</h1>
-			</p>
-			<canvas id="treeCanvas" width="900" height="400"></canvas>
-		</div>
-		<div class="fringeView">
-<!--
-			<h1>Depth Limit</h1>
-			<p id="depthLimitDisplay">
-			</p>
--->
-			<h1>Fringe</h1>
-			<p id="fringeDisplay">
-			</p>
-			<h1>Expanded Nodes</h1>
-			<p id="expandedNodesDisplay">
-			</p>			
-		</div>
-
-		<script src= "https://d1rpkia8qpfj4t.cloudfront.net/js/pipit-0.63.min.js"></script>
-		<script type="text/javascript" src="app/scripts/models.js"></script>
-		<script type="text/javascript" src="app/scripts/view.js"></script>
-		<script type="text/javascript" src="app/scripts/main.js"></script>
-		<script type="text/javascript" src="app/scripts/genericSearch.js"></script>
+		<script src= "https://d1rpkia8qpfj4t.cloudfront.net/js/pipit-0.62.min.js"></script>
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="newIndex/js/jquery-1.11.3.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="newIndex/js/bootstrap.min.js"></script>
+		<script src="simulation.js"></script>
 	</body>
 </html>
-
-
