@@ -3,9 +3,9 @@ var simModel = new pipit.CapiAdapter.CapiModel({
 	studentResponse: "5"
 });
 
-/*
+
 pipit.CapiAdapter.expose('answer', simModel);
-pipit.Controller.notifyOnReady();
+/*pipit.Controller.notifyOnReady();
 
 var answered = 1;
 var questionNumber = 1;
