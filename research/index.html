@@ -33,16 +33,18 @@
 				<div class="row">
 					<div class="col-md-4">
 						<h3>Graph Questions</h3>
-						<ul class="list-group">
-							<li class="list-group-item"></li>
-							<li class="list-group-item"></li>
-							<li class="list-group-item"></li>
-							<li class="list-group-item"></li>
-							<li class="list-group-item"></li>
-						</ul>
+						<form name='question' onSubmit="return questions();">
+							<div class="form-group">
+								<label for="question1">Question 1</label>
+								<input type="text" class="form-control" name="question1" placeholder="Type your answer" />
+							</div>
+							<button type="submit" class="btn btn-default">Submit</button>
+						</form>
+							
+						</div>
 					</div>
 					<div class="col-md-8">
-						<h3>Questions</h3>
+						<h3>Graph</h3>
 						<ul class="list=group">
 							<li id="results"></li>
 						</ul>
@@ -56,10 +58,11 @@
 			</div>
 		</div>
 		<script src= "https://d1rpkia8qpfj4t.cloudfront.net/js/pipit-0.62.min.js"></script>
+
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script src="../newIndex/js/jquery-1.11.3.min.js"></script>
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="../newIndex/js/bootstrap.min.js"></script>
-		<script src="main.js"></script>
+		<script src="/appTryOut/main.js"></script>
 	</body>
 </html>
