@@ -1,12 +1,12 @@
-var answered == 1;
-var questionNumber == 1;
-
 var simModel = new pipit.CapiAdapter.CapiModel({
 	done: false
 });
+
 pipit.CapiAdapter.expose('done', simModel);
 pipit.Controller.notifyOnReady();	
 
+var answered == 1;
+var questionNumber == 1;
 
 function questions() {  
 	var answer1 = document.question.question1;  
@@ -20,11 +20,3 @@ function questions() {
 	}
 	pipit.Controller.notifyOnReady();	
 }
-$(document).ready(function() {
-	// I don't know why I can't do this in CSS, but I can't and I'm
-	// tired of fighting with it.
-// 	$("#depthLimitSpnr").width(50);
-	// This should really be in my code for initializing the view, but
-	// it doesn't work there
-	pipit.Controller.notifyOnReady();
-});
