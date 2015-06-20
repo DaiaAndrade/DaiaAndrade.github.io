@@ -6,7 +6,7 @@ var simModel = new pipit.CapiAdapter.CapiModel({
 pipit.CapiAdapter.expose('answer', simModel);
 pipit.Controller.notifyOnReady();
 
-var answered == 1;
+/*var answered == 1;
 var questionNumber == 1;
 
 function questions() {  
@@ -20,4 +20,4 @@ function questions() {
 
 	}
 	pipit.Controller.notifyOnReady();	
-}
+}*/
