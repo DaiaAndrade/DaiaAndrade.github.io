@@ -1,9 +1,9 @@
-/*var simModel = new pipit.CapiAdapter.CapiModel({
+var simModel = new pipit.CapiAdapter.CapiModel({
 	answer: false,
 	studentResponse: "5"
 });
 
-
+/*
 pipit.CapiAdapter.expose('answer', simModel);
 pipit.Controller.notifyOnReady();
 
