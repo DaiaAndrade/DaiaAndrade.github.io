@@ -20,3 +20,11 @@ function questions() {
 	}
 	pipit.Controller.notifyOnReady();	
 }
+$(document).ready(function() {
+	// I don't know why I can't do this in CSS, but I can't and I'm
+	// tired of fighting with it.
+// 	$("#depthLimitSpnr").width(50);
+	// This should really be in my code for initializing the view, but
+	// it doesn't work there
+	pipit.Controller.notifyOnReady();
+});
