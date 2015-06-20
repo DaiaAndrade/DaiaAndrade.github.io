@@ -31,17 +31,20 @@
 		<div class="starter-template">
 			<div class="container">
 				<div class="row">
-					<h3>Rock, Paper, Scisors!</h3>
+					<h3>Graph Questions</h3>
 					<div class="col-md-4">
-					<h4>The Game</h4>
-					
-	
+						<h4>Questions</h4>
+						<form name="questionsForm" onsubmit="return questions();">
+							<div class="form-group">
+								<label for="question1"> Question 1:</label>
+								<input type="text" class="form-control" placeholder="Answer here" name="question1" />
+							</div>
+							<button type="submit" class="btn btn-default">Submit</button>
+						</form>
 					</div>
 					<div class="col-md-8">
-						<h4>The Results</h4>
-						<ul class="list=group">
-							<li id="results"></li>
-						</ul>
+						<h4>Graph</h4>
+						
 					</div>
 				</div>
 			</div>
