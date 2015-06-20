@@ -4,8 +4,10 @@ var questionNumber == 1;
 var simModel = new pipit.CapiAdapter.CapiModel({
 	done: false
 });
-pipit.CapiAdapter.expose('demoMode', simModel);
-pipit.Controller.notifyOnReady();
+pipit.CapiAdapter.expose('done', simModel);
+pipit.Controller.notifyOnReady();	
+
+
 function questions() {  
 	var answer1 = document.question.question1;  
 	if(option == 1)  {  
