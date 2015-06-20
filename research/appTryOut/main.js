@@ -1,5 +1,5 @@
 var simModel = new pipit.CapiAdapter.CapiModel({
-	answer: true,
+	answer: false,
 	studentResponse: "5"
 });
 
@@ -7,18 +7,18 @@ var simModel = new pipit.CapiAdapter.CapiModel({
 pipit.CapiAdapter.expose('answer', simModel);
 pipit.Controller.notifyOnReady();
 
-/*var answered == 1;
+var answered == 1;
 var questionNumber == 1;
 
 function questions() {  
-	var answer1 = document.question.question1;  
+	/*var answer1 = document.question.question1;  
 	if(option == 1)  {  
 		checkAnswer1(answer1);
-	}  
+	} */ 
 	if (anwsered == questionNumber){
-		simModel.set('done', true);
-		pipit.CapiAdapter.expose('done', simModel);
+		simModel.set('answer', true);
+		pipit.CapiAdapter.expose('answer', simModel);
 
 	}
 	pipit.Controller.notifyOnReady();	
-}*/
+}
