@@ -1,8 +1,10 @@
 var simModel = new pipit.CapiAdapter.CapiModel({
-	demoMode: false
+	answer: true,
+	studentResponse: "5"
 });
 
-pipit.CapiAdapter.expose('demoMode', simModel);
+
+pipit.CapiAdapter.expose('answer', simModel);
 pipit.Controller.notifyOnReady();
 
 /*var answered == 1;
