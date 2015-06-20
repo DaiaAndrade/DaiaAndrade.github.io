@@ -1,5 +1,6 @@
 var simModel = new pipit.CapiAdapter.CapiModel({
-	answer: true
+	answer: true,
+	studentResponse: "5"
 });
 
 
