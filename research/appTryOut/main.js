@@ -1,9 +1,9 @@
 var simModel = new pipit.CapiAdapter.CapiModel({
-	done: false
+	demoMode: false
 });
 
-pipit.CapiAdapter.expose('done', simModel);
-pipit.Controller.notifyOnReady();	
+pipit.CapiAdapter.expose('demoMode', simModel);
+pipit.Controller.notifyOnReady();
 
 /*var answered == 1;
 var questionNumber == 1;
