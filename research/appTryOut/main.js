@@ -16,5 +16,5 @@ function questions() {
 		pipit.CapiAdapter.expose('done', simModel);
 
 	}
+	pipit.Controller.notifyOnReady();	
 }
-pipit.Controller.notifyOnReady();
