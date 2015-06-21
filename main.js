@@ -11,7 +11,7 @@ var questionsAmount = 1;
 
 function questions() {  
 	var answer1 = document.questionsForm.question1;  
-	
+	var answered = answered + 1;
 	if (answered == questionsAmount){
 		simModel.set('answer', true);
 		pipit.CapiAdapter.expose('answer', simModel);
