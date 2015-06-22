@@ -32,19 +32,25 @@
 			<div class="container">
 				<div class="row">
 					<h3>Graph Questions</h3>
+					<div class="col-md-8">
+						<h4>Graph</h4>
+						<div id="canvas">
+							<canvas id="graphCanvas" width="400" height="400"></canvas>
+						</div>
+					</div>
 					<div class="col-md-4">
 						<h4>Questions</h4>
-						<form name="questionsForm"
+						<form name="questionsForm">
 							<div class="form-group">
 								<label for="question1"> Question 1:</label>
 								<input type="text" class="form-control" placeholder="Answer here" name="question1" oninput="questions()" />
 							</div>
 							<button type="submit" class="btn btn-default">Submit</button>
 						</form>
-					</div>
-					<div class="col-md-8">
-						<h4>Graph</h4>
-						
+							<ul class="list-group">
+								<li class="list-group-item list-group-item-info" id="nodes"></li>
+								<li class="list-group-item list-group-item-info" id="edges"></li>
+							</ul>
 					</div>
 				</div>
 			</div>
@@ -54,11 +60,15 @@
 				<p>Daiane Andrade &copy 2012 – All Rights Reserved</p>
 			</div>
 		</div>
-		<script src= "https://d1rpkia8qpfj4t.cloudfront.net/js/pipit-0.62.min.js"></script>
+		<script src="https://d1rpkia8qpfj4t.cloudfront.net/js/pipit-0.62.min.js"></script>
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script src="newIndex/js/jquery-1.11.3.min.js"></script>
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="newIndex/js/bootstrap.min.js"></script>
-		<script src="main.js"></script>
+		<script src="research2/app/scripts/models.js"></script>
+		<script src="research2/app/scripts/view.js"></script>
+		<script src="research2/app/scripts/main.js"></script>
+		<!-- App for retrieve the canvas values -->
+		<script src="research2/app/scripts/app.js"></script>
 	</body>
 </html>
