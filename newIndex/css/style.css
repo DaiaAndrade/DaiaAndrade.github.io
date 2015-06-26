@@ -2,8 +2,15 @@
 body{
 	background-attachment: fixed;
 	text-align: justify;
-	padding-top: 80px;
-}/*
+	padding-top: 50px;
+	/*width: 500px*/;
+
+}
+#graphCanvas{
+	width: 300px;
+	height: 200px;
+}
+/*
 nav	{
 	background-color: #53556A;
 	text-align: center;
