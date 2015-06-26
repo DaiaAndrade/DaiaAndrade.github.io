@@ -77,6 +77,15 @@ SearchController.prototype.drawGraph = function() {
 	// tell the view to draw the nodes
 	this.searchView.drawGraph(nodeList);
 }
+var simModel = new pipit.CapiAdapter.CapiModel({
+	answer: false
+});
+
+
+pipit.CapiAdapter.expose('answer', simModel);
+pipit.Controller.notifyOnReady();
 
 var searchController = new SearchController();
-$(document).ready(searchController.drawGraph());
+var context = new ContextRetriever(searchController);
+$(document).ready(searchController.drawGraph(), context.setContext(),simModel.set('answer', true),
+		pipit.CapiAdapter.expose('answer', simModel));

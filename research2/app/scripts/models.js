@@ -319,3 +319,22 @@ GraphModel.prototype.nodeList = function() {
 	// return list of nodes
 	return nodeList;
 }
+
+function ContextRetriever(context){
+	this.context = context;
+}
+
+ContextRetriever.prototype.retrieveData = function(){
+	this.nodeAmount = this.context.searchModel.graph.nodes.length;
+	this.edgeAmount = this.context.searchModel.graph.edges.length;
+	console.log(this.nodeAmount,this.edgeAmount);
+}
+ContextRetriever.prototype.putData = function(){
+	document.getElementById('nodes').innerHTML = this.nodeAmount;
+	document.getElementById('edges').innerHTML = this.edgeAmount;
+}
+
+ContextRetriever.prototype.setContext = function(){
+	this.retrieveData();
+	this.putData();
+}
