@@ -3,7 +3,7 @@ body{
 	background-attachment: fixed;
 	text-align: justify;
 	padding-top: 50px;
-	/*width: 500px*/;
+	width: 500px;
 
 }
 #graphCanvas{
