@@ -17,31 +17,29 @@
 					<div class="col-md-4">
 						<h4>Graph</h4>
 						<div id="canvas">
-							<canvas id="graphCanvas" width="300" height="400"></canvas>
+							<canvas id="graphCanvas" height="250"></canvas>
 						</div>
 					</div>
 				</div>
-					<div class="col-md-2">
+				<div class="col-md-2">
+					<div class="form-group">
 						<h4>Questions</h4>
-						<form name="questionsForm">
-							<div class="form-group">
-								<label for="question1"> Question 1:</label>
-								<input type="text" class="form-control" placeholder="Answer here" name="question1" oninput="questions()" />
-							</div>
-							<button type="submit" class="btn btn-default">Submit</button>
-						</form>
+						<label> Question 1: How many nodes does this graph has?</label>
+						<input type="text" class="form-control" placeholder="Answer here" id="question1" oninput="questions()">
+						<label> Question 2: How many edges does this graph has?</label>
+						<input type="text" class="form-control" placeholder="Answer here" id="question2" oninput="questions()">
+					</div>
+				</div>
+					<div class="col-md-2">
+						<h4>Answers</h4>
 							<ul class="list-group">
-								<li class="list-group-item list-group-item-info" id="nodes"></li>
-								<li class="list-group-item list-group-item-info" id="edges"></li>
+								<li class="list-group-item list-group-item-info" id="correct1"></li>
+								<li class="list-group-item list-group-item-info" id="correct2"></li>
 							</ul>
 					</div>
 			</div>
 		</div>
-		<div class="footer">
-			<div class="container">
-				<p>Daiane Andrade &copy 2012 – All Rights Reserved</p>
-			</div>
-		</div>
+		
 		<script src="https://d1rpkia8qpfj4t.cloudfront.net/js/pipit-0.62.min.js"></script>
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script src="newIndex/js/jquery-1.11.3.min.js"></script>

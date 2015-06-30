@@ -45,17 +45,6 @@ SearchView.prototype.setupGraphView = function() {
 		G:{x:250, y:125, id:'G'},
 		H:{x:325, y:125, id:'H'},
 		I:{x:100, y:200, id:'I'},
-		J:{x:175, y:200, id:'J'},
-		K:{x:250, y:200, id:'K'},
-		L:{x:325, y:200, id:'L'},
-		M:{x:100, y:275, id:'M'},
-		N:{x:175, y:275, id:'N'},
-		O:{x:250, y:275, id:'O'},
-		P:{x:325, y:275, id:'P'},
-		Q:{x:100, y:350, id:'Q'},
-		R:{x:175, y:350, id:'R'},
-		S:{x:250, y:350, id:'S'},
-		T:{x:325, y:350, id:'T'},
 	};
 }
 

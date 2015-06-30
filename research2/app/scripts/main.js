@@ -87,5 +87,47 @@ pipit.Controller.notifyOnReady();
 
 var searchController = new SearchController();
 var context = new ContextRetriever(searchController);
-$(document).ready(searchController.drawGraph(), context.setContext(),simModel.set('answer', true),
-		pipit.CapiAdapter.expose('answer', simModel));
+searchController.drawGraph();
+context.setContext();
+
+
+questions = function() {
+	var nodes = context.getNodes();
+	var edges = context.getEdges();
+	var answer1 = document.getElementById("question1").value;  
+	var answer2 = document.getElementById("question2").value;
+	var correct = 0;
+	if (nodes == answer1) {
+		correct += 1;
+		document.getElementById('correct1').innerHTML = "Question 1 is right";
+	}
+	else{
+		document.getElementById('correct1').innerHTML = "Question 1 is wrong";
+	}
+
+	if (edges == answer2) {
+		correct += 1;
+		document.getElementById('correct2').innerHTML = "Question 2 is right";
+	}
+	else{
+		document.getElementById('correct2').innerHTML = "Question 2 is wrong";
+	}
+	if (correct == 2) {
+		simModel.set('answer', true);
+		pipit.CapiAdapter.expose('answer', simModel);
+		pipit.Controller.notifyOnReady();	
+	};
+	return true;
+	/*var answered = answered + 1;
+	if (answered == questionsAmount){
+		simModel.set('answer', true);
+		pipit.CapiAdapter.expose('answer', simModel);
+
+	}
+	pipit.Controller.notifyOnReady();	
+	return true;*/
+}
+/*simModel.set('answer', true),
+pipit.CapiAdapter.expose('answer', simModel)*/
+
+$(document).ready(context.setContext());

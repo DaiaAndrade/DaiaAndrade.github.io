@@ -25,18 +25,15 @@ ContextRetriever.prototype.putData = function(){
 
 ContextRetriever.prototype.setContext = function(){
 	this.retrieveData();
-	this.putData();
+	//this.putData();
 }
 
-/*function questions() {  
-	var answer1 = document.questionsForm.question1;  
-	var answered = answered + 1;
-	if (answered == questionsAmount){
-		simModel.set('answer', true);
-		pipit.CapiAdapter.expose('answer', simModel);
+ContextRetriever.prototype.getNodes = function(){
+	return this.nodeAmount;
+}
 
-	}
-	pipit.Controller.notifyOnReady();	
-	return true;
-}*/
+ContextRetriever.prototype.getEdges = function(){
+	return this.edgeAmount;
+}
+
 

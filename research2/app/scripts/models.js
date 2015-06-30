@@ -31,7 +31,7 @@ SearchModel.prototype.initValues = function() {
 	// ID of node in graph where search starts
 	this.startNode = 'A';
 	// ID of node in graph where search ends
-	this.endNode = 'T';
+	this.endNode = 'I';
 	// depth limit for iterative deepening search
 	this.depthLimit = 50;
 }
@@ -67,9 +67,7 @@ SearchModel.prototype.initializeGraph = function() {
 	//  a dictionary with nodeID:heuristic pairs.
 	var nodeList = {A:7, B:6, C:5, D:4, 
 					E:6, F:5, G:4, H:3,
-					I:5, J:4, K:3, L:2, 
-					M:4, N:3, O:2, P:1,
-					Q:3, R:2, S:1, T:0};
+					I:5};
 
 	// Add some nodes to the state space graph
 	// loop over all of the nodes in the node list
@@ -86,22 +84,11 @@ SearchModel.prototype.initializeGraph = function() {
 		B:{A:-1, C:-1, E:-1, F:-1, G:-1},
 		C:{B:-1, D:-1, F:-1, G:-1, H:-1},
 		D:{C:-1, G:-1, H:-1},
-		E:{A:-1, B:-1, F:-1, I:-1, J:-1},
-		F:{A:-1, B:-1, C:-1, E:-1, G:-1, I:-1, J:-1, K:-1},
-		G:{B:-1, C:-1, D:-1, F:-1, H:-1, J:-1, K:-1, L:-1},
-		H:{C:-1, D:-1, G:-1, K:-1, L:-1},
-		I:{E:-1, F:-1, J:-1, N:-1, M:-1},
-		J:{E:-1, F:-1, G:-1, I:-1, K:-1, M:-1, N:-1, O:-1},
-		K:{F:-1, G:-1, H:-1, J:-1, L:-1, N:-1, O:-1, P:-1},
-		L:{G:-1, H:-1, K:-1, O:-1, P:-1},
-		M:{I:-1, J:-1, N:-1, Q:-1, R:-1},
-		N:{I:-1, J:-1, K:-1, M:-1, O:-1, Q:-1, R:-1, S:-1},
-		O:{J:-1, K:-1, L:-1, N:-1, O:-1, P:-1, R:-1, S:-1, T:-1},
-		P:{K:-1, L:-1, O:-1, S:-1, T:-1},
-		Q:{M:-1, N:-1, R:-1},
-		R:{M:-1, N:-1, O:-1, Q:-1, S:-1},
-		S:{N:-1, O:-1, P:-1, R:-1, T:-1},
-		T:{O:-1, P:-1, S:-1},
+		E:{A:-1, B:-1, F:-1, I:-1},
+		F:{A:-1, B:-1, C:-1, E:-1, G:-1, I:-1},
+		G:{B:-1, C:-1, D:-1, F:-1, H:-1},
+		H:{C:-1, D:-1, G:-1},
+		I:{E:-1, F:-1},
 	};
 	// loop over all of the start nodes
 	for (var startNodeID in edgeList) {
@@ -117,10 +104,10 @@ SearchModel.prototype.initializeGraph = function() {
 				// add the edge and its cost to the graph model
 				this.addEdgeToGraph(startNodeID, endNodeID, randCost);
 				// if this is an undirected graph, then add an edge in the other direction
-				if (! this.directedGraph) {
+				/*if (! this.directedGraph) {
 					// add the "opposite" edge and its cost to the graph model
 					this.addEdgeToGraph(endNodeID, startNodeID, edgeList[startNodeID][endNodeID]);
-				}
+				}*/
 			}
 		}
 	}	
@@ -273,6 +260,7 @@ SearchModel.prototype.addEdgeToGraph = function(fromNodeID, toNodeID, cost) {
 	if (this.graph.findNode(toNodeID) < 0) return;
 	// does the edge already exist?
 	if (this.graph.findEdge(fromNodeID, toNodeID) >= 0) return;
+
 	// Create a GraphEdge object
 	var newGraphEdge = new GraphEdge();
 	// initialize values
@@ -327,7 +315,7 @@ function ContextRetriever(context){
 ContextRetriever.prototype.retrieveData = function(){
 	this.nodeAmount = this.context.searchModel.graph.nodes.length;
 	this.edgeAmount = this.context.searchModel.graph.edges.length;
-	console.log(this.nodeAmount,this.edgeAmount);
+	//console.log(this.nodeAmount,this.edgeAmount);
 }
 ContextRetriever.prototype.putData = function(){
 	document.getElementById('nodes').innerHTML = this.nodeAmount;
@@ -336,5 +324,13 @@ ContextRetriever.prototype.putData = function(){
 
 ContextRetriever.prototype.setContext = function(){
 	this.retrieveData();
-	this.putData();
+	//this.putData();
+}
+
+ContextRetriever.prototype.getNodes = function(){
+	return this.nodeAmount;
+}
+
+ContextRetriever.prototype.getEdges = function(){
+	return this.edgeAmount;
 }
