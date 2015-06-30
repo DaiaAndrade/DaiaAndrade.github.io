@@ -88,8 +88,8 @@ pipit.Controller.notifyOnReady();
 var searchController = new SearchController();
 var context = new ContextRetriever(searchController);
 searchController.drawGraph();
+searchController.searchModel.graph.dumpGraph();
 context.setContext();
-
 
 questions = function() {
 	var nodes = context.getNodes();
