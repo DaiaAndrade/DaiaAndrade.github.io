@@ -104,10 +104,11 @@ SearchModel.prototype.initializeGraph = function() {
 				// add the edge and its cost to the graph model
 				this.addEdgeToGraph(startNodeID, endNodeID, randCost);
 				// if this is an undirected graph, then add an edge in the other direction
-				/*if (! this.directedGraph) {
+				if (true) {
 					// add the "opposite" edge and its cost to the graph model
-					this.addEdgeToGraph(endNodeID, startNodeID, edgeList[startNodeID][endNodeID]);
-				}*/
+					this.addEdgeToGraph(endNodeID, startNodeID, randCost);
+					console.log("hiu");
+				}
 			}
 		}
 	}	
@@ -314,7 +315,7 @@ function ContextRetriever(context){
 
 ContextRetriever.prototype.retrieveData = function(){
 	this.nodeAmount = this.context.searchModel.graph.nodes.length;
-	this.edgeAmount = this.context.searchModel.graph.edges.length;
+	this.edgeAmount = (this.context.searchModel.graph.edges.length)/2;
 	//console.log(this.nodeAmount,this.edgeAmount);
 }
 ContextRetriever.prototype.putData = function(){
