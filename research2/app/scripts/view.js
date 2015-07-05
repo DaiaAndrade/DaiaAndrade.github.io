@@ -28,7 +28,7 @@ SearchView.prototype.setupGraphView = function() {
 	// erase the canvas
 	this.graphContext.clearRect(0, 0, this.graphCanvas.width, this.graphCanvas.height);
 	// set canvas to 1/3 width of window
-	this.graphContext.canvas.width  = (window.innerWidth / 3) - 10;
+	this.graphContext.canvas.width  = 400;
 	// set radius for each node
 	this.graphNodeRadius = 20;
 	// create an object filled with node objects. each 
@@ -36,15 +36,15 @@ SearchView.prototype.setupGraphView = function() {
 	// - the x and y position of the node within the canvas, 
 	// - the id of the node
 	this.graphNodes = {
-		A:{x:100, y:50, id:'A'},
-		B:{x:175, y:50, id:'B'},
-		C:{x:250, y:50, id:'C'},
-		D:{x:325, y:50, id:'D'},
-		E:{x:100, y:125, id:'E'},
-		F:{x:175, y:125, id:'F'},
-		G:{x:250, y:125, id:'G'},
-		H:{x:325, y:125, id:'H'},
-		I:{x:100, y:200, id:'I'},
+		A:{x:50, y:50, id:'A'},
+		B:{x:125, y:50, id:'B'},
+		C:{x:200, y:50, id:'C'},
+		D:{x:275, y:50, id:'D'},
+		E:{x:50, y:125, id:'E'},
+		F:{x:125, y:125, id:'F'},
+		G:{x:200, y:125, id:'G'},
+		H:{x:275, y:125, id:'H'},
+		I:{x:50, y:200, id:'I'},
 	};
 }
 
@@ -52,7 +52,8 @@ SearchView.prototype.setupGraphView = function() {
 SearchView.prototype.drawGraph = function(nodeList) { 
 	// erase the canvas
 	this.graphContext.clearRect(0, 0, this.graphCanvas.width, this.graphCanvas.height);
-	this.graphContext.canvas.width  = (window.innerWidth / 3) - 10;
+	this.graphContext.canvas.width  = 400;
+	this.graphContext.canvas.height  = 225;
 	// draw all the nodes that have been "discovered"
 	this.drawNodes(nodeList);
 	// draw the edges between the discovered nodes

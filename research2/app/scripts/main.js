@@ -87,16 +87,23 @@ pipit.Controller.notifyOnReady();
 
 var searchController = new SearchController();
 var context = new ContextRetriever(searchController);
-searchController.drawGraph();
-searchController.searchModel.graph.dumpGraph();
-context.setContext();
+var correct = 0;
+
+main = function(){
+	searchController.drawGraph();
+	context.setContext();
+};
+
 
 questions = function() {
 	var nodes = context.getNodes();
 	var edges = context.getEdges();
 	var answer1 = document.getElementById("question1").value;  
 	var answer2 = document.getElementById("question2").value;
-	var correct = 0;
+	var answer3 = document.getElementById("question3").value;  
+	var answer4 = document.getElementById("question4").value;
+
+	
 	if (nodes == answer1) {
 		correct += 1;
 		document.getElementById('correct1').innerHTML = "Question 1 is right";
@@ -112,22 +119,62 @@ questions = function() {
 	else{
 		document.getElementById('correct2').innerHTML = "Question 2 is wrong";
 	}
-	if (correct == 2) {
+	change();
+	searchController = new SearchController();
+	context = new ContextRetriever(searchController);
+	main();
+	
+	return true;
+	
+}
+
+questions2 = function() {
+	var nodes = context.getNodes();
+	var edges = context.getEdges();
+	var answer3 = document.getElementById("question3").value;  
+	var answer4 = document.getElementById("question4").value;
+
+	
+	if (nodes == answer3) {
+		correct += 1;
+		document.getElementById('correct3').innerHTML = "Question 3 is right";
+	}
+	else{
+		document.getElementById('correct3').innerHTML = "Question 3 is wrong";
+	}
+
+	if (edges == answer4) {
+		correct += 1;
+		document.getElementById('correct4').innerHTML = "Question 4 is right";
+	}
+	else{
+		document.getElementById('correct4').innerHTML = "Question 4 is wrong";
+	}
+	if (correct >= 3) {
 		simModel.set('answer', true);
 		pipit.CapiAdapter.expose('answer', simModel);
 		pipit.Controller.notifyOnReady();	
-	};
-	return true;
-	/*var answered = answered + 1;
-	if (answered == questionsAmount){
-		simModel.set('answer', true);
-		pipit.CapiAdapter.expose('answer', simModel);
-
 	}
-	pipit.Controller.notifyOnReady();	
-	return true;*/
-}
-/*simModel.set('answer', true),
-pipit.CapiAdapter.expose('answer', simModel)*/
 
-$(document).ready(context.setContext());
+	return true;
+	
+}
+
+var change = function(){
+	$('#send1').click(function(){
+		$('#form1').hide();
+		$('#form2').show();
+	});
+}
+
+$('head').ready(function(){
+	$('#form1').hide();
+	$('#form2').hide();
+	$('#startButton').click(function(){
+		$('#form1').show();
+		$('#form2').hide();
+		$(this).hide();
+	});
+});
+
+$(document).ready(main);

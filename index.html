@@ -8,6 +8,7 @@
 		<link rel="stylesheet" type="text/css" href="newIndex/css/style.css"/>
 		<link rel="stylesheet" type="text/css" href="newIndex/css/bootstrap.css">
 		<title>Generic Title</title>
+		
 	</head>
 	<body> 
 		<div class="starter-template">
@@ -17,17 +18,26 @@
 					<div class="col-md-4">
 						<h4>Graph</h4>
 						<div id="canvas">
-							<canvas id="graphCanvas" height="250"></canvas>
+							<canvas id="graphCanvas"></canvas>
 						</div>
 					</div>
 				</div>
 				<div class="col-md-2">
-					<div class="form-group">
-						<h4>Questions</h4>
-						<label> Question 1: How many nodes does this graph has?</label>
-						<input type="text" class="form-control" placeholder="Answer here" id="question1" oninput="questions()">
-						<label> Question 2: How many edges does this graph has?</label>
-						<input type="text" class="form-control" placeholder="Answer here" id="question2" oninput="questions()">
+					<h4>Questions</h4>
+					<button type="button" class="btn btn-danger" id="startButton"> Start!</button>
+					<div class="form-group" id="form1">
+						<label id="q1"> Question 1: How many nodes does this graph has?</label>
+						<input type="text" class="form-control" placeholder="Answer here" id="question1">
+						<label id="q1"> Question 2: How many edges does this graph has?</label>
+						<input type="text" class="form-control" placeholder="Answer here" id="question2">
+						<button id="send1" type="button" class="btn btn-primary" onclick="questions()">Answer</button>
+					</div>
+					<div class="form-group" id="form2">
+						<label id="q2"> Question 3: How many nodes does this graph has?</label>
+						<input type="text" class="form-control" placeholder="Answer here" id="question3">
+						<label id="q3"> Question 4: How many edges does this graph has?</label>
+						<input type="text" class="form-control" placeholder="Answer here" id="question4">
+						<button type="button" class="btn btn-primary" onclick="questions2()">Answer</button>
 					</div>
 				</div>
 					<div class="col-md-2">
@@ -35,6 +45,8 @@
 							<ul class="list-group">
 								<li class="list-group-item list-group-item-info" id="correct1"></li>
 								<li class="list-group-item list-group-item-info" id="correct2"></li>
+								<li class="list-group-item list-group-item-info" id="correct3"></li>
+								<li class="list-group-item list-group-item-info" id="correct4"></li>
 							</ul>
 					</div>
 			</div>
