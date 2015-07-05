@@ -119,11 +119,10 @@ questions = function() {
 	else{
 		document.getElementById('correct2').innerHTML = "Question 2 is wrong";
 	}
-	change();
 	searchController = new SearchController();
 	context = new ContextRetriever(searchController);
 	main();
-	
+		
 	return true;
 	
 }
@@ -160,21 +159,13 @@ questions2 = function() {
 	
 }
 
-var change = function(){
-	$('#send1').click(function(){
-		$('#form1').hide();
-		$('#form2').show();
-	});
+$('#send1').click(function(){
+		$("#form1").css({"display": "none"});
+		$('#form2').css({"display": "block"});
+})
+
+var hide = function(){
+	$("#form1").css({"display": "block"});
 }
 
-$('head').ready(function(){
-	$('#form1').hide();
-	$('#form2').hide();
-	$('#startButton').click(function(){
-		$('#form1').show();
-		$('#form2').hide();
-		$(this).hide();
-	});
-});
-
-$(document).ready(main);
+$(document).ready(main,hide());
