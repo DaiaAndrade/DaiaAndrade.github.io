@@ -100,8 +100,6 @@ questions = function() {
 	var edges = context.getEdges();
 	var answer1 = document.getElementById("question1").value;  
 	var answer2 = document.getElementById("question2").value;
-	var answer3 = document.getElementById("question3").value;  
-	var answer4 = document.getElementById("question4").value;
 
 	
 	if (nodes == answer1) {
@@ -119,7 +117,7 @@ questions = function() {
 	else{
 		document.getElementById('correct2').innerHTML = "Question 2 is wrong";
 	}
-	searchController = new SearchController();
+	searchController.searchModel.reset();
 	context = new ContextRetriever(searchController);
 	main();
 		
@@ -128,27 +126,25 @@ questions = function() {
 }
 
 questions2 = function() {
-	var nodes = context.getNodes();
-	var edges = context.getEdges();
+	var edgeDegree = context.getEdgeDegree();
 	var answer3 = document.getElementById("question3").value;  
-	var answer4 = document.getElementById("question4").value;
 
 	
-	if (nodes == answer3) {
+	if (edgeDegree == answer3) {
 		correct += 1;
 		document.getElementById('correct3').innerHTML = "Question 3 is right";
 	}
 	else{
 		document.getElementById('correct3').innerHTML = "Question 3 is wrong";
 	}
-
+/*
 	if (edges == answer4) {
 		correct += 1;
 		document.getElementById('correct4').innerHTML = "Question 4 is right";
 	}
 	else{
 		document.getElementById('correct4').innerHTML = "Question 4 is wrong";
-	}
+	}*/
 	if (correct >= 3) {
 		simModel.set('answer', true);
 		pipit.CapiAdapter.expose('answer', simModel);

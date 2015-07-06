@@ -107,7 +107,6 @@ SearchModel.prototype.initializeGraph = function() {
 				if (true) {
 					// add the "opposite" edge and its cost to the graph model
 					this.addEdgeToGraph(endNodeID, startNodeID, randCost);
-					console.log("hiu");
 				}
 			}
 		}
@@ -316,8 +315,18 @@ function ContextRetriever(context){
 ContextRetriever.prototype.retrieveData = function(){
 	this.nodeAmount = this.context.searchModel.graph.nodes.length;
 	this.edgeAmount = (this.context.searchModel.graph.edges.length)/2;
-	//console.log(this.nodeAmount,this.edgeAmount);
+	this.edgeDegree = 0;
+	for (var i in this.context.searchModel.graph.nodes){
+		if (this.context.searchModel.graph.findEdge('F',this.context.searchModel.graph.nodes[i].nodeID) != -1){
+			this.edgeDegree += 1;
+		}
+		if (this.context.searchModel.graph.findEdge(this.context.searchModel.graph.nodes[i].nodeID,'F') != -1){
+			this.edgeDegree += 1;
+		}
+	}
+	this.edgeDegree = this.edgeDegree/2;
 }
+
 ContextRetriever.prototype.putData = function(){
 	document.getElementById('nodes').innerHTML = this.nodeAmount;
 	document.getElementById('edges').innerHTML = this.edgeAmount;
@@ -334,4 +343,7 @@ ContextRetriever.prototype.getNodes = function(){
 
 ContextRetriever.prototype.getEdges = function(){
 	return this.edgeAmount;
+}
+ContextRetriever.prototype.getEdgeDegree = function(){
+	return this.edgeDegree;
 }
