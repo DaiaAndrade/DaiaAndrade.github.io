@@ -99,11 +99,20 @@ Queue.prototype.queueCheck = function(){
 		return false;
 	}
 }
- Queue.prototype.queueAdd = function(value){
+Queue.prototype.queueAdd = function(value){
  	this.queue.splice(0,1);
  	this.queue.push(value);
  }
 
+ Queue.prototype.trueCounter = function(){
+ 	var trueCounter = 0;
+	for (var count in this.queue){
+		if (this.queue[count] == true) {
+			trueCounter += 1;
+		}
+	}
+	return trueCounter;
+ }
 
 pipit.CapiAdapter.expose('answer', simModel);
 pipit.Controller.notifyOnReady();
@@ -126,27 +135,23 @@ questions = function() {
 
 	if (nodes == answer1) {
 		queue.queueAdd(true);
-		document.getElementById('correct1').innerHTML = "Question 1 is right";
 	}
 	else{
 		queue.queueAdd(false);
-		document.getElementById('correct1').innerHTML = "Question 1 is wrong";
 	}
 
 	if (edges == answer2) {
 		queue.queueAdd(true);
-		document.getElementById('correct2').innerHTML = "Question 2 is right";
 	}
 	else{
 		queue.queueAdd(false);
-		document.getElementById('correct2').innerHTML = "Question 2 is wrong";
 	}
+
+	document.getElementById('correct1').innerHTML = "Number of right Answers: " + queue.trueCounter();
+
 	console.log(queue.queue);
 	if (queue.queueCheck() == true) {
 		$('#form1').css({"display": "none"});
-		$('#correct2').css({"display": "none"});
-		$('#correct3').css({"display": "none"});
-		$('#correct4').css({"display": "none"});
 		document.getElementById('correct1').innerHTML = "You got it right!";
 		simModel.set('answer', true);
 		pipit.CapiAdapter.expose('answer', simModel);
@@ -170,21 +175,19 @@ questions2 = function() {
 	
 	if (edgeDegreeF == answer3) {
 		queue.queueAdd(true);
-		document.getElementById('correct3').innerHTML = "Question 3 is right";
 	}
 	else{
 		queue.queueAdd(false);
-		document.getElementById('correct3').innerHTML = "Question 3 is wrong";
 	}
 
 	if (edgeDegreeC == answer4) {
 		queue.queueAdd(true);
-		document.getElementById('correct4').innerHTML = "Question 4 is right";
 	}
 	else{
 		queue.queueAdd(false);
-		document.getElementById('correct4').innerHTML = "Question 4 is wrong";
 	}
+	document.getElementById('correct1').innerHTML = "Number of right Answers: " + queue.trueCounter();
+	
 	console.log(queue.queue);
 	if (queue.queueCheck() == true) {
 		$('#form2').css({"display": "none"});
