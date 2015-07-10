@@ -110,7 +110,8 @@ SearchModel.prototype.initializeGraph = function() {
 				}
 			}
 		}
-	}	
+	}
+	this.deleteNodesWithNoEdges();	
 }
 
 
@@ -291,7 +292,24 @@ GraphModel.prototype.dumpGraph = function() {
 	}
 }
 
+SearchModel.prototype.deleteNodesWithNoEdges = function(){
+	for (var i in this.graph.nodes){
+		if (this.degreeCounter(this.graph.nodes[i].nodeID) == 0) {
+			this.graph.nodes.splice(i,1);
+		}
+	}
+}
 
+SearchModel.prototype.degreeCounter = function(node){
+	var counter = 0;
+	for (var i in this.graph.nodes){
+		if (this.graph.findEdge(node,this.graph.nodes[i].nodeID) != -1 ||
+		 this.graph.findEdge(this.graph.nodes[i].nodeID,node) != -1){
+			counter += 1;
+		}
+	}
+	return counter;
+}
 /*
  * This function returns a list of all the nodes in the graph.
  */
@@ -315,16 +333,8 @@ function ContextRetriever(context){
 ContextRetriever.prototype.retrieveData = function(){
 	this.nodeAmount = this.context.searchModel.graph.nodes.length;
 	this.edgeAmount = (this.context.searchModel.graph.edges.length)/2;
-	this.edgeDegree = 0;
-	for (var i in this.context.searchModel.graph.nodes){
-		if (this.context.searchModel.graph.findEdge('F',this.context.searchModel.graph.nodes[i].nodeID) != -1){
-			this.edgeDegree += 1;
-		}
-		if (this.context.searchModel.graph.findEdge(this.context.searchModel.graph.nodes[i].nodeID,'F') != -1){
-			this.edgeDegree += 1;
-		}
-	}
-	this.edgeDegree = this.edgeDegree/2;
+	this.edgeDegreeF = this.context.searchModel.degreeCounter('F');
+	this.edgeDegreeC = this.context.searchModel.degreeCounter('C');
 }
 
 ContextRetriever.prototype.putData = function(){
@@ -341,9 +351,15 @@ ContextRetriever.prototype.getNodes = function(){
 	return this.nodeAmount;
 }
 
+
 ContextRetriever.prototype.getEdges = function(){
 	return this.edgeAmount;
 }
-ContextRetriever.prototype.getEdgeDegree = function(){
-	return this.edgeDegree;
+
+ContextRetriever.prototype.getEdgeDegreeF = function(){
+	return this.edgeDegreeF;
+}
+
+ContextRetriever.prototype.getEdgeDegreeC = function(){
+	return this.edgeDegreeC;
 }
