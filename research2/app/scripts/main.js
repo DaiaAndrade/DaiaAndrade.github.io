@@ -81,13 +81,36 @@ var simModel = new pipit.CapiAdapter.CapiModel({
 	answer: false
 });
 
+function Queue(){
+	this.queue = [null,null,null,null];
+}
+
+Queue.prototype.queueCheck = function(){
+	var trueCounter = 0;
+	for (var count in this.queue){
+		if (this.queue[count] == true) {
+			trueCounter += 1;
+		}
+	}
+	if (trueCounter >= 4) {
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+ Queue.prototype.queueAdd = function(value){
+ 	this.queue.splice(0,1);
+ 	this.queue.push(value);
+ }
+
 
 pipit.CapiAdapter.expose('answer', simModel);
 pipit.Controller.notifyOnReady();
 
 var searchController = new SearchController();
 var context = new ContextRetriever(searchController);
-var correct = 0;
+var queue = new Queue();
 
 main = function(){
 	searchController.drawGraph();
@@ -101,58 +124,86 @@ questions = function() {
 	var answer1 = document.getElementById("question1").value;  
 	var answer2 = document.getElementById("question2").value;
 
-	
 	if (nodes == answer1) {
-		correct += 1;
+		queue.queueAdd(true);
 		document.getElementById('correct1').innerHTML = "Question 1 is right";
 	}
 	else{
+		queue.queueAdd(false);
 		document.getElementById('correct1').innerHTML = "Question 1 is wrong";
 	}
 
 	if (edges == answer2) {
-		correct += 1;
+		queue.queueAdd(true);
 		document.getElementById('correct2').innerHTML = "Question 2 is right";
 	}
 	else{
+		queue.queueAdd(false);
 		document.getElementById('correct2').innerHTML = "Question 2 is wrong";
 	}
-	searchController.searchModel.reset();
-	context = new ContextRetriever(searchController);
-	main();
-		
+	console.log(queue.queue);
+	if (queue.queueCheck() == true) {
+		$('#form1').css({"display": "none"});
+		$('#correct2').css({"display": "none"});
+		$('#correct3').css({"display": "none"});
+		$('#correct4').css({"display": "none"});
+		document.getElementById('correct1').innerHTML = "You got it right!";
+		simModel.set('answer', true);
+		pipit.CapiAdapter.expose('answer', simModel);
+		pipit.Controller.notifyOnReady();
+	}
+	else{
+		searchController.searchModel.reset();
+		context = new ContextRetriever(searchController);
+		main();
+	}
+
 	return true;
 	
 }
 
 questions2 = function() {
-	var edgeDegree = context.getEdgeDegree();
+	var edgeDegreeF = context.getEdgeDegreeF();
+	var edgeDegreeC = context.getEdgeDegreeC();
 	var answer3 = document.getElementById("question3").value;  
-
+	var answer4 = document.getElementById("question4").value;  
 	
-	if (edgeDegree == answer3) {
-		correct += 1;
+	if (edgeDegreeF == answer3) {
+		queue.queueAdd(true);
 		document.getElementById('correct3').innerHTML = "Question 3 is right";
 	}
 	else{
+		queue.queueAdd(false);
 		document.getElementById('correct3').innerHTML = "Question 3 is wrong";
 	}
-/*
-	if (edges == answer4) {
-		correct += 1;
+
+	if (edgeDegreeC == answer4) {
+		queue.queueAdd(true);
 		document.getElementById('correct4').innerHTML = "Question 4 is right";
 	}
 	else{
+		queue.queueAdd(false);
 		document.getElementById('correct4').innerHTML = "Question 4 is wrong";
-	}*/
-	if (correct >= 3) {
+	}
+	console.log(queue.queue);
+	if (queue.queueCheck() == true) {
+		$('#form2').css({"display": "none"});
+		$('#correct2').css({"display": "none"});
+		$('#correct3').css({"display": "none"});
+		$('#correct4').css({"display": "none"});
+		document.getElementById('correct1').innerHTML = "You got it right!";
 		simModel.set('answer', true);
 		pipit.CapiAdapter.expose('answer', simModel);
-		pipit.Controller.notifyOnReady();	
+		pipit.Controller.notifyOnReady();
 	}
-
+	else{
+		$('#form2').css({"display": "none"});
+		$("#form1").css({"display": "block"});
+		searchController.searchModel.reset();
+		context = new ContextRetriever(searchController);
+		main();
+	}
 	return true;
-	
 }
 
 $('#send1').click(function(){
@@ -165,3 +216,4 @@ var hide = function(){
 }
 
 $(document).ready(main,hide());
+
