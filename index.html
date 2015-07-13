@@ -8,54 +8,60 @@
 		<link rel="stylesheet" type="text/css" href="newIndex/css/style.css"/>
 		<link rel="stylesheet" type="text/css" href="newIndex/css/bootstrap.css">
 		<title>Generic Title</title>
-		
 	</head>
 	<body> 
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<a class="navbar-brand" href="#">Daiane Andrade</a>
+				<ul class="nav navbar-nav">
+					<li><a href="newIndex/index.html">Home</a></li>
+					<li><a href="research/index.html">Research</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Contact <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Facebook</a></li>
+							<li><a href="#">Twitter</a></li>
+							<li><a href="mailto:daiafocking@gmail.com">Email</a></li>
+						</ul>
+					</li>
+					<li><a href="index.html">Sobre</a></li>
+				</ul>
+			</div>
+		</nav>
 		<div class="starter-template">
 			<div class="container">
 				<div class="row">
-					<h3>Graph Questions</h3>
+					<h3>Rock, Paper, Scisors!</h3>
 					<div class="col-md-4">
-						<h4>Graph</h4>
-						<div id="canvas">
-							<canvas id="graphCanvas"></canvas>
-						</div>
+					<h4>The Game</h4>
+					
+						<ul class="list-group">
+							<li class="list-group-item"><button type="button" class="btn btn-default" onclick="main(1)">Rock</button></li>
+							<li class="list-group-item"><button type="button" class="btn btn-primary" onclick="main(2)">Paper</button></li>
+							<li class="list-group-item"><button type="button" class="btn btn-info" onclick="main(3)">Scisors</button></li>
+							<li class="list-group-item list-group-item-danger" id="computer">Waiting for computer choice.</li>
+							<li class="list-group-item list-group-item-success" id="result">Waiting for result.</li>
+						</ul>
 					</div>
-				</div>
-				<div class="col-md-2">
-					<h4>Questions</h4>
-					<div class="form-group" id="form1">
-						<label id="q1"> Question 1: How many nodes does this graph has?</label>
-						<input type="text" class="form-control" placeholder="Answer here" id="question1">
-						<label id="q1"> Question 2: How many edges does this graph has?</label>
-						<input type="text" class="form-control" placeholder="Answer here" id="question2">
-						<button id="send1" type="button" class="btn btn-primary" onclick="questions()">Answer</button>
+					<div class="col-md-8">
+						<h4>The Results</h4>
+						<ul class="list-group">
+							<li id="results"></li>
+						</ul>
 					</div>
-					<div class="form-group" id="form2">
-						<label id="q2"> Question 3: What is the degree of node F?</label>
-						<input type="text" class="form-control" placeholder="Answer here" id="question3">
-						<label id="q3"> Question 4: What is the degree of node C?</label>
-						<input type="text" class="form-control" placeholder="Answer here" id="question4">
-						<button id="send2" type="button" class="btn btn-primary" onclick="questions2()">Answer</button>
-					</div>
-				</div>
-				<div class="col-md-2">
-					<h4>Answers</h4>
-					<ul class="list-group">
-						<li class="list-group-item list-group-item-info" id="correct1"></li>
-					</ul>
 				</div>
 			</div>
 		</div>
-		
-		<script src="https://d1rpkia8qpfj4t.cloudfront.net/js/pipit-0.62.min.js"></script>
+		<div class="footer">
+			<div class="container">
+				<p>Daiane Andrade &copy 2012 – All Rights Reserved</p>
+			</div>
+		</div>
+		<script src= "https://d1rpkia8qpfj4t.cloudfront.net/js/pipit-0.62.min.js"></script>
 		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 		<script src="newIndex/js/jquery-1.11.3.min.js"></script>
 		<!-- Include all compiled plugins (below), or include individual files as needed -->
 		<script src="newIndex/js/bootstrap.min.js"></script>
-		<script src="research2/app/scripts/models.js"></script>
-		<script src="research2/app/scripts/view.js"></script>
-		<script src="research2/app/scripts/main.js"></script>
-		
+		<script src="Game/simulation.js"></script>
 	</body>
 </html>
