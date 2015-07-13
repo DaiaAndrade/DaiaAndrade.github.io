@@ -111,6 +111,7 @@ SearchModel.prototype.initializeGraph = function() {
 			}
 		}
 	}
+	// delete all nodes that does not have any edges attached at it
 	this.deleteNodesWithNoEdges();	
 }
 
@@ -292,19 +293,31 @@ GraphModel.prototype.dumpGraph = function() {
 	}
 }
 
+/*
+ * This function deletes all nodes with no edges in it
+ */
 SearchModel.prototype.deleteNodesWithNoEdges = function(){
+	//	loop through the node array
 	for (var i in this.graph.nodes){
+		// check the degree of the node
 		if (this.degreeCounter(this.graph.nodes[i].nodeID) == 0) {
+			// delete the node if the node has no edges
 			this.graph.nodes.splice(i,1);
 		}
 	}
 }
 
+/*
+ * This function counts how many edges a given node has
+ */
 SearchModel.prototype.degreeCounter = function(node){
 	var counter = 0;
+	//	loop through the node array
 	for (var i in this.graph.nodes){
+		// is there an egde between the given node and the node in the array?
 		if (this.graph.findEdge(node,this.graph.nodes[i].nodeID) != -1 ||
 		 this.graph.findEdge(this.graph.nodes[i].nodeID,node) != -1){
+		 	// count it
 			counter += 1;
 		}
 	}
@@ -324,42 +337,4 @@ GraphModel.prototype.nodeList = function() {
 	}
 	// return list of nodes
 	return nodeList;
-}
-
-function ContextRetriever(context){
-	this.context = context;
-}
-
-ContextRetriever.prototype.retrieveData = function(){
-	this.nodeAmount = this.context.searchModel.graph.nodes.length;
-	this.edgeAmount = (this.context.searchModel.graph.edges.length)/2;
-	this.edgeDegreeF = this.context.searchModel.degreeCounter('F');
-	this.edgeDegreeC = this.context.searchModel.degreeCounter('C');
-}
-
-ContextRetriever.prototype.putData = function(){
-	document.getElementById('nodes').innerHTML = this.nodeAmount;
-	document.getElementById('edges').innerHTML = this.edgeAmount;
-}
-
-ContextRetriever.prototype.setContext = function(){
-	this.retrieveData();
-	//this.putData();
-}
-
-ContextRetriever.prototype.getNodes = function(){
-	return this.nodeAmount;
-}
-
-
-ContextRetriever.prototype.getEdges = function(){
-	return this.edgeAmount;
-}
-
-ContextRetriever.prototype.getEdgeDegreeF = function(){
-	return this.edgeDegreeF;
-}
-
-ContextRetriever.prototype.getEdgeDegreeC = function(){
-	return this.edgeDegreeC;
 }

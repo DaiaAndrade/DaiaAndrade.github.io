@@ -77,21 +77,26 @@ SearchController.prototype.drawGraph = function() {
 	// tell the view to draw the nodes
 	this.searchView.drawGraph(nodeList);
 }
-var simModel = new pipit.CapiAdapter.CapiModel({
-	answer: false
-});
+
+/*	Daiane Andrade
+	july 2015
+
+	Code do implement fuctions for the SmartSparrow	*/
+
+/*	Queue data structure.
+	A queue is a vector with no information inside of it, with 4 index
+	It is used to control the Answers	*/
 
 function Queue(){
 	this.queue = [null,null,null,null];
 }
 
+/*	function to check if the queue has the correct
+	amount of true inside of it. Used to 
+	finish the questions	*/
+
 Queue.prototype.queueCheck = function(){
-	var trueCounter = 0;
-	for (var count in this.queue){
-		if (this.queue[count] == true) {
-			trueCounter += 1;
-		}
-	}
+	var trueCounter = this.trueCounter();
 	if (trueCounter >= 4) {
 		return true;
 	}
@@ -99,67 +104,86 @@ Queue.prototype.queueCheck = function(){
 		return false;
 	}
 }
+/*	function to add the value at the end of the queue
+	and remove the first element of the queue	*/
 Queue.prototype.queueAdd = function(value){
- 	this.queue.splice(0,1);
- 	this.queue.push(value);
- }
+	this.queue.splice(0,1);
+	this.queue.push(value);
+}
 
- Queue.prototype.trueCounter = function(){
- 	var trueCounter = 0;
+/*	function that counts the amount of true values
+	inside the queue	*/
+Queue.prototype.trueCounter = function(){
+	var trueCounter = 0;
 	for (var count in this.queue){
 		if (this.queue[count] == true) {
 			trueCounter += 1;
 		}
 	}
 	return trueCounter;
- }
+}
 
-pipit.CapiAdapter.expose('answer', simModel);
+/*	serie of code to create and expose variables
+	to SmartSparrow	*/	
+var simModel = new pipit.CapiAdapter.CapiModel({
+	done: false
+});
+
+pipit.CapiAdapter.expose('done', simModel);
 pipit.Controller.notifyOnReady();
 
+/*	Global variables to be used during the execution	*/
 var searchController = new SearchController();
-var context = new ContextRetriever(searchController);
 var queue = new Queue();
 
+/*	main function where the graph should be drawn	*/
 main = function(){
 	searchController.drawGraph();
-	context.setContext();
 };
 
-
+/*	function for the first 2 questions	*/
 questions = function() {
-	var nodes = context.getNodes();
-	var edges = context.getEdges();
+	//	take the elements from the HTML 
 	var answer1 = document.getElementById("question1").value;  
 	var answer2 = document.getElementById("question2").value;
 
-	if (nodes == answer1) {
+	//	compare the answer with the amount of nodes
+	if (answer1 == searchController.searchModel.graph.nodes.length) {
+		//	add true in the queue
 		queue.queueAdd(true);
 	}
 	else{
+		//	add false in the queue
 		queue.queueAdd(false);
 	}
 
-	if (edges == answer2) {
+	//	compare the answer with the amount of egdes
+	if (answer2 == (searchController.searchModel.graph.edges.length/2)) {
+		//	add true in the queue
 		queue.queueAdd(true);
 	}
 	else{
+		//	add false in the queue
 		queue.queueAdd(false);
 	}
 
+	//	viewers tracking of answers
 	document.getElementById('correct1').innerHTML = "Number of right Answers: " + queue.trueCounter();
 
-	console.log(queue.queue);
+	//	do we have the right queue ansers?
 	if (queue.queueCheck() == true) {
-		$('#form1').css({"display": "none"});
 		document.getElementById('correct1').innerHTML = "You got it right!";
-		simModel.set('answer', true);
-		pipit.CapiAdapter.expose('answer', simModel);
+		/*	change the status of the SmartSparrow variable for true to show that
+			the student is able to continue the lesson	*/
+		simModel.set('done', true);
+		//	expose the answer for the SmartSparrow
+		pipit.CapiAdapter.expose('done', simModel);
 		pipit.Controller.notifyOnReady();
 	}
+
+	// the amount is not right, so continue to answer and change the graph 	
 	else{
 		searchController.searchModel.reset();
-		context = new ContextRetriever(searchController);
 		main();
 	}
 
@@ -167,56 +191,92 @@ questions = function() {
 	
 }
 
+/*	function for the last 2 questions	*/
 questions2 = function() {
-	var edgeDegreeF = context.getEdgeDegreeF();
-	var edgeDegreeC = context.getEdgeDegreeC();
+	//	take the elements from the HTML 
 	var answer3 = document.getElementById("question3").value;  
 	var answer4 = document.getElementById("question4").value;  
 	
-	if (edgeDegreeF == answer3) {
+	//	compare the answer with the degree of the node
+	if (answer3 == searchController.searchModel.degreeCounter('F')) {
+		//	add true in the queue
 		queue.queueAdd(true);
 	}
 	else{
+		//	add false in the queue
 		queue.queueAdd(false);
 	}
 
-	if (edgeDegreeC == answer4) {
+	//	compare the answer with the degree of the node
+	if (answer4 == searchController.searchModel.degreeCounter('C')) {
+		//	add true in the queue
 		queue.queueAdd(true);
 	}
 	else{
+		//	add false in the queue
 		queue.queueAdd(false);
 	}
+
+	//	viewers tracking of answers
 	document.getElementById('correct1').innerHTML = "Number of right Answers: " + queue.trueCounter();
-	
-	console.log(queue.queue);
+
+	//	do we have the right queue ansers?
 	if (queue.queueCheck() == true) {
-		$('#form2').css({"display": "none"});
-		$('#correct2').css({"display": "none"});
-		$('#correct3').css({"display": "none"});
-		$('#correct4').css({"display": "none"});
 		document.getElementById('correct1').innerHTML = "You got it right!";
+		/*	change the status of the SmartSparrow variable for true to show that
+			the student is able to continue the lesson	*/
 		simModel.set('answer', true);
 		pipit.CapiAdapter.expose('answer', simModel);
 		pipit.Controller.notifyOnReady();
 	}
+
+	// the amount is not right, so continue to answer and change the graph 	
 	else{
-		$('#form2').css({"display": "none"});
-		$("#form1").css({"display": "block"});
 		searchController.searchModel.reset();
-		context = new ContextRetriever(searchController);
 		main();
 	}
 	return true;
 }
 
+//	send button for the first 2 questions
 $('#send1').click(function(){
+	//	do we have the right queue ansers?
+	if (queue.queueCheck() == true) {
+		//	hide the questions 1 and 2
 		$("#form1").css({"display": "none"});
+	}
+	//	we do not
+	else{
+		//	hide questiosn 1 and 2
+		$("#form1").css({"display": "none"});
+		//	show questions 3 and 4
 		$('#form2').css({"display": "block"});
+	}
 })
 
-var hide = function(){
+//	send button for the last 2 questions
+$('#send2').click(function(){
+	//	do we have the right queue ansers?
+	if (queue.queueCheck() == true) {
+		//	hide the questions 3 and 4
+		$('#form2').css({"display": "none"});
+	}
+	//	we do not
+	else{
+		//	hide questions 3 and 4
+		$("#form2").css({"display": "none"});
+		//	show questions 1 and 2
+		$('#form1').css({"display": "block"});
+	}
+})
+
+/*	when you load the page, in the CSS,
+	all the questions are hidden, andyou just wnat to show
+	the questions 1 and 2 when the page is fully loaded,
+	so we made this function	*/
+var show = function(){
 	$("#form1").css({"display": "block"});
 }
 
-$(document).ready(main,hide());
+$(document).ready(main,show());
 
