@@ -1,0 +1,102 @@
+
+body{
+	background-attachment: fixed;
+	text-align: justify;
+/*	padding-top: 50px;
+	width: 500px;
+
+*/}
+#form1, #form2{
+	display: none;
+}
+
+/*#graphCanvas{
+	width: 300px;
+	height: 150px;
+}
+
+nav	{
+	background-color: #53556A;
+	text-align: center;
+	font-weight: bold;
+	padding: 0px;
+}
+nav ul{
+	list-style-type: none;
+}
+
+nav li{
+	float: left;
+	display: block;
+}
+
+.Menu a:link, .Menu a:visited{
+	display: block;
+	background-color: #53556A;
+	width: 100px;
+	height: 10px;
+	padding: 27px 4px 30px 4px;
+	color: white;
+	text-decoration: none;
+
+}
+.Menu a:hover, .Menu a:active{
+	color: #53556A;
+	background-color: white;
+}
+/*.Header{
+	background-color:#5A81FF;
+	height: 210px;
+	margin: 3% auto 0 auto;
+}
+
+/*#LogoImage1{
+	position: absolute;
+	top: 7%;
+	left: 10%;
+}
+.LogoText{
+	position: absolute;
+	top: 27%;
+	left:19%;
+	font-size: 12px;
+}
+.LogoText a:link, .LogoText a:visited{
+	text-decoration: none;
+	font-weight: none;
+	color: #53556A;
+}
+.LogoText a:hover,.LogoText a:active{
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+/*div.MainContent{
+	position: relative;
+	width:65%;
+	float: left;
+	background-color: #7FACFF;
+}
+h2#MainArticle{
+	padding: 0px 0px 0px 8px;
+	margin: 2px 0px 1px 2px;
+	color:purple;
+}
+div.date{
+	padding: 0px 0px 0px 8px;
+	margin: 2px 0px 1px 8px;
+	color:orange;
+}
+div.MainArticle p{
+	margin: 0px;
+	padding: 10px;
+	color:black;
+}
+#SecondArticle{
+
+}
+div.SideContent{
+	float: left;
+	width:35%;
+	background-color: #98BDFF;
+}*/

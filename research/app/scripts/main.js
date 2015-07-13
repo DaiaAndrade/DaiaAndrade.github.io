@@ -68,181 +68,215 @@ function SearchController() {
 	this.searchView = new SearchView();
 	// This counter is used to create unique IDs for each node\
 	// in the search tree
-	this.uniqueCounter = 0;
-	// I use the discovered nodes array to keep track of which
-	// graph nodes should be drawn by the graph view
-	this.discoveredNodes = [];
-	// I use the expanded nodes array to keep track of which 
-	// tree nodes have already been expanded
-	this.expandedNodes = [];
-	// We aren't searching
-	this.searchAlg = "None";
-	// Keep track of the current "depth limit" for depth-first
-	// search with iterative deepening
-	this.depthLimitCounter = 1;
-}
-
-
-/*
- * This sets everything back to "factory original" settings
- */
-SearchController.prototype.reset = function() {
-// 	console.log("resetting controller");
-	// Create the data model
-	this.searchModel.reset();
-	// Create the view
-	this.searchView.reset();
-	// This counter is used to create unique IDs for each node\
-	// in the search tree
-	this.uniqueCounter = 0;
-	// I use the discovered nodes array to keep track of which
-	// graph nodes should be drawn by the graph view
-	emptyOutArray(this.discoveredNodes);
-	// I use the expanded nodes array to keep track of which 
-	// tree nodes have already been expanded
-	emptyOutArray(this.expandedNodes);
-	// We aren't searching
-	this.searchAlg = "None";
-}
-
-
-/*
- * I use this to set/change values for the search parameters
- */
-SearchController.prototype.setSearchParameters = function(parameters) {
-// 	console.log(parameters);
-	// do we have a new value for the start node
-	if (parameters.startNode) {
-		// update the value
-		this.searchModel.startNode = parameters.startNode;
-	}
-	// do we have a new value for the end node
-	if (parameters.endNode) {
-		// update the value
-		this.searchModel.endNode = parameters.endNode;	
-	}
-	// do we have a new value for the depth limit
-	if (parameters.depthLimit) {
-		// update the value
-		this.searchModel.depthLimit = parameters.depthLimit;	
-	}
-// 	console.log("setSearchParameters");
-// 	console.log("start: " + this.searchModel.startNode + 
-// 				" end: " + this.searchModel.endNode +
-// 				" depth: " + this.searchModel.depthLimit);
-}
-
-
-/*
- * I use this function to create unique nodeIDs for each node
- * in the tree.
- */
-SearchController.prototype.uniqueID = function(nodeID) {
-	// append a number to the end of the nodeID
-	uniqueNodeID = nodeID.concat(this.uniqueCounter.toString());
-	// increment the unique ID counter
-	this.uniqueCounter += 1;
-	// return the unique nodeID
-	return uniqueNodeID;
 }
 
 
 SearchController.prototype.drawGraph = function() {
 	// get the list of nodes from the model
-	nodeList = this.searchModel.nodeList();
+	nodeList = this.searchModel.graph.nodeList(); //error corrected from Rich's code
 	// tell the view to draw the nodes
-	this.searchView.drawNodes(nodeList);
+	this.searchView.drawGraph(nodeList);
 }
 
+/*	Daiane Andrade
+	july 2015
 
+	Code do implement fuctions for the SmartSparrow	*/
+
+/*	Queue data structure.
+	A queue is a vector with no information inside of it, with 4 index
+	It is used to control the Answers	*/
+
+function Queue(){
+	this.queue = [null,null,null,null];
+}
+
+/*	function to check if the queue has the correct
+	amount of true inside of it. Used to 
+	finish the questions	*/
+
+Queue.prototype.queueCheck = function(){
+	var trueCounter = this.trueCounter();
+	if (trueCounter >= 4) {
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+/*	function to add the value at the end of the queue
+	and remove the first element of the queue	*/
+Queue.prototype.queueAdd = function(value){
+	this.queue.splice(0,1);
+	this.queue.push(value);
+}
+
+/*	function that counts the amount of true values
+	inside the queue	*/
+Queue.prototype.trueCounter = function(){
+	var trueCounter = 0;
+	for (var count in this.queue){
+		if (this.queue[count] == true) {
+			trueCounter += 1;
+		}
+	}
+	return trueCounter;
+}
+
+/*	serie of code to create and expose variables
+	to SmartSparrow	*/	
 var simModel = new pipit.CapiAdapter.CapiModel({
-    demoMode: true,
-    studentResponse: "5"
+	done: false
 });
 
-// Create a new Search Controller
+pipit.CapiAdapter.expose('done', simModel);
+pipit.Controller.notifyOnReady();
+
+/*	Global variables to be used during the execution	*/
 var searchController = new SearchController();
+var queue = new Queue();
 
-var simModel = new pipit.CapiAdapter.CapiModel({
-    demoMode: true,
-    studentResponse: "5"
-});
+/*	main function where the graph should be drawn	*/
+main = function(){
+	searchController.drawGraph();
+};
 
+/*	function for the first 2 questions	*/
+questions = function() {
+	//	take the elements from the HTML 
+	var answer1 = document.getElementById("question1").value;
+	var answer2 = document.getElementById("question2").value;
 
-pipit.CapiAdapter.expose('demoMode', simModel);
- 	
+	//	compare the answer with the amount of nodes
+	if (answer1 == searchController.searchModel.graph.nodes.length) {
+		//	add true in the queue
+		queue.queueAdd(true);
+	}
+	else{
+		//	add false in the queue
+		queue.queueAdd(false);
+	}
 
-$(document).ready(function() {
-	// I don't know why I can't do this in CSS, but I can't and I'm
-	// tired of fighting with it.
-// 	$("#depthLimitSpnr").width(50);
-	// This should really be in my code for initializing the view, but
-	// it doesn't work there
- 	$("#depthLimitSpnr").spinner( "value", 50 );
+	//	compare the answer with the amount of egdes
+	if (answer2 == (searchController.searchModel.graph.edges.length/2)) {
+		//	add true in the queue
+		queue.queueAdd(true);
+	}
+	else{
+		//	add false in the queue
+		queue.queueAdd(false);
+	}
 
-	pipit.Controller.notifyOnReady();
-});
+	//	viewers tracking of answers
+	document.getElementById('correct1').innerHTML = "Number of right Answers: " + queue.trueCounter();
 
+	//	do we have the right queue ansers?
+	if (queue.queueCheck() == true) {
+		document.getElementById('correct1').innerHTML = "You got it right!";
+		/*	change the status of the SmartSparrow variable for true to show that
+			the student is able to continue the lesson	*/
+		simModel.set('done', true);
+		//	expose the answer for the SmartSparrow
+		pipit.CapiAdapter.expose('done', simModel);
+		pipit.Controller.notifyOnReady();
+	}
 
+	// the amount is not right, so continue to answer and change the graph 	
+	else{
+		searchController.searchModel.reset();
+		main();
+	}
 
+	return true;
+	
+}
 
-/*
- * Unit Testing
- */
-/*
-$(document).ready(function() {
-	// Create a new searchModel
-	var searchModel = new SearchModel();
-	// Add some nodes to the state space graph
-	searchModel.addNodeToGraph('A', 0);
-	searchModel.addNodeToGraph('B', 0);
-	searchModel.addNodeToGraph('C', 0);
-	searchModel.addNodeToGraph('D', 0);
-	// Intentional errors
-	searchModel.addNodeToGraph('D', 0);					// add same node twice
-	searchModel.addNodeToGraph('E', -4);				// add node with negative heuristic
-	// Add some edges to the state space graph
-	searchModel.addEdgeToGraph('A', 'B', 0);	
-	searchModel.addEdgeToGraph('A', 'C', 0);	
-	searchModel.addEdgeToGraph('B', 'D', 0);	
-	// Intentional errors
-	searchModel.addEdgeToGraph('A', 'B', 0);			// add same edge twice
-	searchModel.addEdgeToGraph('A', 'A', 0);			// add edge with same from and to node
-	searchModel.addEdgeToGraph('C', 'D', -1);			// add edge with negative cost
-	searchModel.addEdgeToGraph('F', 'D', 0);			// add edge with non-existant from node
-	searchModel.addEdgeToGraph('C', 'F', 0);			// add edge with non-existant to node
-	// Dump the state space graph
-	searchModel.graph.dumpGraph();
-	// Add some nodes to the search tree - nodeID, heuristic, cost, parent, graphNodeID
-	searchModel.addNodeToTree('A1', 4, 0, '', 'A');
-	searchModel.addNodeToTree('B2', 4, 0, 'A1', 'B');
-	searchModel.addNodeToTree('C3', 4, 0, 'A1', 'C');
-	// Intentional errors
-	searchModel.addNodeToTree('B2', 4, 0, 'A1', 'B');	// add same node twice
-	searchModel.addNodeToTree('D4', -4, 0, 'B2', 'D');	// add node with negative heuristic
-	searchModel.addNodeToTree('D4', 4, -1, 'B2', 'D');	// add node with negative cost
-	searchModel.addNodeToTree('D4', 4, 0, 'B2', 'G');	// add node with nonexistant graph node
-	// Dump the search tree
-	searchModel.tree.dumpTree();
-	// Add some nodeIDs to the fringe
-	searchModel.addNodeToFringe('A1');
-	searchModel.addNodeToFringe('B2');
-	// Intentional errors
-	searchModel.addNodeToFringe('F7');				// node that doesn't exist in search tree
-	// Dump the fringe
-	searchModel.fringe.dumpFringe();
-});
-*/
+/*	function for the last 2 questions	*/
+questions2 = function() {
+	//	take the elements from the HTML 
+	var answer3 = document.getElementById("question3").value;  
+	var answer4 = document.getElementById("question4").value;  
+	
+	//	compare the answer with the degree of the node
+	if (answer3 == searchController.searchModel.degreeCounter('F')) {
+		//	add true in the queue
+		queue.queueAdd(true);
+	}
+	else{
+		//	add false in the queue
+		queue.queueAdd(false);
+	}
 
+	//	compare the answer with the degree of the node
+	if (answer4 == searchController.searchModel.degreeCounter('C')) {
+		//	add true in the queue
+		queue.queueAdd(true);
+	}
+	else{
+		//	add false in the queue
+		queue.queueAdd(false);
+	}
 
-/*
- * Unit tests
- 
-	// Do BFS
-	path = searchController.breadthFirstSearch();
-	console.log("victoia")
-	console.log(path);
+	//	viewers tracking of answers
+	document.getElementById('correct1').innerHTML = "Number of right Answers: " + queue.trueCounter();
 
-*/
+	//	do we have the right queue ansers?
+	if (queue.queueCheck() == true) {
+		document.getElementById('correct1').innerHTML = "You got it right!";
+		/*	change the status of the SmartSparrow variable for true to show that
+			the student is able to continue the lesson	*/
+		simModel.set('answer', true);
+		pipit.CapiAdapter.expose('answer', simModel);
+		pipit.Controller.notifyOnReady();
+	}
 
+	// the amount is not right, so continue to answer and change the graph 	
+	else{
+		searchController.searchModel.reset();
+		main();
+	}
+	return true;
+}
+
+//	send button for the first 2 questions
+$('#send1').click(function(){
+	//	do we have the right queue ansers?
+	if (queue.queueCheck() == true) {
+		//	hide the questions 1 and 2
+		$("#form1").css({"display": "none"});
+	}
+	//	we do not
+	else{
+		//	hide questiosn 1 and 2
+		$("#form1").css({"display": "none"});
+		//	show questions 3 and 4
+		$('#form2').css({"display": "block"});
+	}
+})
+
+//	send button for the last 2 questions
+$('#send2').click(function(){
+	//	do we have the right queue ansers?
+	if (queue.queueCheck() == true) {
+		//	hide the questions 3 and 4
+		$('#form2').css({"display": "none"});
+	}
+	//	we do not
+	else{
+		//	hide questions 3 and 4
+		$("#form2").css({"display": "none"});
+		//	show questions 1 and 2
+		$('#form1').css({"display": "block"});
+	}
+})
+
+/*	when you load the page, in the CSS,
+	all the questions are hidden, andyou just wnat to show
+	the questions 1 and 2 when the page is fully loaded,
+	so we made this function	*/
+var show = function(){
+	$("#form1").css({"display": "block"});
+}
+
+$(document).ready(main,show());
 
